@@ -1,0 +1,14 @@
+*.DS_Store
+*.swp
+*.swo
+*.log
+npm-debug.log*
+.eslintcache
+.sass-cache/
+*.css.map
+tmp/themeupdate.txt
+
+assets
+node_modules
+bower_components
+config.yml
