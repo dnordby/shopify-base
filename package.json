@@ -2,7 +2,7 @@
   "name": "shopify-base",
   "version": "1.0.0",
   "description": "V+V Base Shopify Theme",
-  "main": "index.js",
+  "main": "entry.js",
   "dependencies": {
     "extract-text-webpack-plugin": "^1.0.1"
   },

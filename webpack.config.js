@@ -1,15 +1,20 @@
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+let extractSCSS = new ExtractTextPlugin('./style.css');
 module.exports = {
-    entry: "./entry.js",
+    entry: "./src/js/app.js",
     output: {
-        path: __dirname,
-        filename: "bundle.js"
+        path: 'assets/',
+        filename: "app.js"
     },
     module: {
         loaders: [
             {
               test: /\.scss$/,
-              loaders: ["style", "css", "sass"]
+              loader: extractSCSS.extract(['css', 'sass'])
             }
         ]
-    }
+    },
+    plugins: [
+      extractSCSS
+    ]
 };

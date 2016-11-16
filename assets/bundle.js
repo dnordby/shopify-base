@@ -44,12 +44,19 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// require("./style.css");
-	document.write(__webpack_require__(1));
+	__webpack_require__(1);
+	document.write(__webpack_require__(3));
 
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 2 */,
+/* 3 */
 /***/ function(module, exports) {
 
 	module.exports = "It works from content.js.";

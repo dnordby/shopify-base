@@ -8,7 +8,6 @@ npm-debug.log*
 *.css.map
 tmp/themeupdate.txt
 
-assets
 node_modules
-bower_components
 config.yml
+src/
