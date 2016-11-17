@@ -30,58 +30,14 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
-  <div class="test">
-
-  </div>
+  <header class="container-fluid">
+    <div class="main-nav row">
+      {% include 'main-nav' %}
+    </div>
+  </header>
   <div class="container">
 
-    <header class="row">
 
-      <div class="social-links half column left-aligned">
-      {% include 'social-links' %}
-      </div>
-
-      <div class="half column right-aligned">
-
-        <div class="cart-link">
-          <a href="/cart"><img src="{{ 'cart.svg' | asset_url }}" /> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
-        </div>
-
-        {% if shop.customer_accounts_enabled %}
-        <div class="customer-links">
-          {% if customer %}
-            Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
-          {% else %}
-            {{ 'Log in' | customer_login_link }}
-            {% if shop.customer_accounts_optional %}
-            or {{ 'Create an account' | customer_register_link }}
-            {% endif %}
-          {% endif %}
-        </div>
-        {% endif %}
-
-      </div>
-
-      <div class="masthead full column clear centered" role="banner">
-        {% if settings.use_logo %}
-        <a id="logo" href="/">
-          {{ 'logo.png' | asset_url | img_tag: shop.name }}
-        </a>
-        {% else %}
-        <a id="site-title" href="/">
-          {{ shop.name }}
-        </a>
-        {% endif %}
-        {% if template == 'index' %}
-        <h1 class="hidden">{{ shop.name }}</h1>
-        {% endif %}
-      </div>
-
-      <div class="clear full column">
-        {% include 'site-nav' %}
-      </div>
-
-    </header>
 
     <div id="main" role="main">
       {{ content_for_layout }}
