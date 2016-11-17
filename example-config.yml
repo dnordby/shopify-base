@@ -1,0 +1,34 @@
+production:
+  password: [private-app-password-here]
+  theme_id: "[theme-id-here]"
+  store: [store-name-here].myshopify.com
+  bucket_size: 40
+  refill_rate: 2
+  timeout: 180s
+  ignore_files:
+  - "node_modules/"
+  - "src/"
+  - "package.json"
+  - "LICENSE"
+  - "README.md"
+  - "webpack.config.js"
+  - "config.yml"
+  - ".gitignore"
+  - "example-config.yml"
+development:
+  password: [private-app-password-here]
+  theme_id: "[theme-id-here]"
+  store: [store-name-here].myshopify.com
+  bucket_size: 40
+  refill_rate: 2
+  timeout: 180s
+  ignore_files:
+  - "node_modules/"
+  - "src/"
+  - "package.json"
+  - "LICENSE"
+  - "README.md"
+  - "webpack.config.js"
+  - "config.yml"
+  - ".gitignore"
+  - "example-config.yml"

@@ -6,7 +6,6 @@ npm-debug.log*
 .eslintcache
 .sass-cache/
 *.css.map
-tmp/themeupdate.txt
 
 node_modules
 config.yml
