@@ -1,7 +1,7 @@
 body {
   background-color: blue; }
   body .test {
-    background-color: red;
+    background-color: yellow;
     display: block;
     height: 300px;
     left: 50%;
