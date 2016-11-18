@@ -1,78 +1,27 @@
 <!doctype html>
-<head>
-  <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
-  <link rel="canonical" href="{{ canonical_url }}" />
+<html>
+  <head>
+    {% include 'head' %}
+    <!-- LOAD SHOPIFY APP JS -->
+    {{ content_for_header }}
+  </head>
 
-  <!-- META FIELDS -->
-  <meta charset="utf-8" />
-  {% if page_description %}<meta name="description" content="{{ page_description | escape }}" />{% endif %}
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  {% include 'open-graph-tags' %}
-  {% include 'twitter-card' %}
+  <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+    <!-- MODALS -->
 
-  <!-- LOAD SHOPIFY APP JS -->
-  {{ content_for_header }}
+    <!-- HEADER -->
+    {% include 'header' %}
 
-  <!-- LOAD CUSTOM CSS -->
-  {{ 'style.css' | asset_url | stylesheet_tag }}
-
-  <!-- LOAD CUSTOM JS AND DEPENDENCIES -->
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
-  {{ 'app.js' | asset_url | script_tag }}
-
-  <!-- LOAD OTHER VITAL SHOPIFY ASSETS -->
-  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-  {% if template contains 'customers' %}{{ 'customer_area.js'  | shopify_asset_url | script_tag }}{% endif %}
-  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-  {{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
-  <script>jQuery('html').removeClass('no-js').addClass('js');</script>
-
-</head>
-
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
-  <header class="container-fluid">
-    <div class="main-nav row">
-      {% include 'main-nav' %}
-    </div>
-  </header>
-  <div class="container">
-
-
-
-    <div id="main" role="main">
-      {{ content_for_layout }}
-    </div>
-
-    <footer>
-
-      {% if linklists.footer.links.size > 0 %}
-      <p role="navigation">
-      {% for link in linklists.footer.links %}
-        <a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a>
-      {% endfor %}
-      </p>
-      {% endif %}
-
-      {% unless shop.enabled_payment_types == empty %}
-	  <div class="payment-types">
-        {% for type in shop.enabled_payment_types %}
-        <img width="40" src="{{ type | payment_type_img_url }}" />
-        {% endfor %}
+    <!-- MAIN BODY -->
+    <div class="container">
+      <div id="main" role="main">
+        {{ content_for_layout }}
       </div>
-      {% endunless %}
+    </div>
 
-      <p role="contentinfo" class="small-print">Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}.</p>
+    <!-- FOOTER -->
+    {% include 'footer' %}
 
-    </footer>
+  </body>
 
-    {% comment %}Shopify does not support Internet Explorer 6 nor 7. It does encourage themes to support IE8 until the end of 2014.{% endcomment %}
-    <!--[if lt IE 8]>
-    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-
-  </div><!-- end of #container -->
-
-  {{ 'shop.js'  | asset_url | script_tag }}
-
-</body>
 </html>

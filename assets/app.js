@@ -44,9 +44,14 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// REQUIRE ALL SCSS FROM APP.SCSS
 	__webpack_require__(1);
 
-	document.write(__webpack_require__(3));
+	// REQUIRE EACH JS MODULE
+	__webpack_require__(4);
+	__webpack_require__(5);
+
+
 
 
 /***/ },
@@ -57,10 +62,26 @@
 
 /***/ },
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports) {
 
-	module.exports = "It works from content.js.";
+	function exportHome() {
+	  console.log("It works from home.js.");
+	}
+
+	module.exports = exportHome();
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	function exportAbout() {
+	  console.log("It works from about.js.");
+	}
+
+	module.exports = exportAbout();
 
 
 /***/ }

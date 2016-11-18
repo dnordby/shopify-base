@@ -1,5 +1,4 @@
 <nav role="navigation" class="col-xs-12">
-
   <!-- MAIN NAVIGATION - MANAGED IN SHOPIFY DASHBOARD -->
   <ul class="nav">
     {% for link in linklists.main-menu.links %}
@@ -8,13 +7,11 @@
       </li>
     {% endfor %}
   </ul>
-
   <!-- ACCOUNT LOGIN/LOGOUT & CART LINK -->
   <div class="account-cart">
     <div class="cart-link">
-      <a href="/cart"><img src="{{ 'cart.svg' | asset_url }}" /> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</a>
+      <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</a>
     </div>
-
     <div class="customer-links">
       {% if customer %}
         <a href="/account">{{ customer.first_name }}</a> | {{ 'Log out' | customer_logout_link }}
