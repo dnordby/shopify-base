@@ -9,7 +9,7 @@ module.exports = {
     module: {
         loaders: [
             {
-              test: /\.scss$/,
+              test: /app\.scss$/,
               loader: extractSCSS.extract(['css', 'sass'])
             }
         ]

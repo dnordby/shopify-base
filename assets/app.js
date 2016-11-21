@@ -48,8 +48,8 @@
 	__webpack_require__(1);
 
 	// REQUIRE EACH JS MODULE
+	__webpack_require__(3);
 	__webpack_require__(4);
-	__webpack_require__(5);
 
 
 /***/ },
@@ -60,8 +60,7 @@
 
 /***/ },
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	function exportHome() {
@@ -72,7 +71,7 @@
 
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 	function exportAbout() {
