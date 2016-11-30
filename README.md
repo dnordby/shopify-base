@@ -10,3 +10,5 @@ To begin coding:
  - Open terminal and run each of the following commands in **separate** tabs:
    - `theme watch`
    - `webpack --watch`
+
+Other notes:
