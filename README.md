@@ -1,8 +1,10 @@
 VPV Base Shopify Theme
 ============
 
-To initialize:
+To initialize run:
   - `git clone git@github.com:dnordby/shopify-base.git`
+  - `git remote remove origin`
+  - `git remote add origin git@github.com:[link-to-your-new-repo-here].git`
   - `npm install`
   - Rename `example-config.yml` to `config.yml` and replace password, theme ID, and store fields. For additional help, check out the [Themekit documentation](http://shopify.github.io/themekit/). 
 
