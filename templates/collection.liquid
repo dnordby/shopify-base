@@ -1,9 +1,3 @@
-{% comment %}
-  Important notes about pagination:
-  - Never access collection.products before the opening paginate tag.
-  - Never paginate by more than 50.
-{% endcomment %}
-
 {% assign products_per_page = settings.products_per_row | times: settings.number_of_rows %}
 {% assign numbers = 'zero, one, two, three, four, five, six' | split: ',' %}
 {% assign products_per_row = settings.products_per_row | times: 1 %}
@@ -11,23 +5,8 @@
 
 {% paginate collection.products by products_per_page %}
 
-{% comment %}
-  Re-use the .rte class wherever you output content that was added by a merchant using
-  the Rich Text Editor ( 'rte' stands for rich text editor ).
-  Style all HTML elements in that content the same way across the board.
-  Use the .rte class in your CSS to help maintain consistency.
-  Example: the h2 element should have the same size and color in:
-  - product descriptions
-  - collection descriptions
-  - page content
-  - blog post
-{% endcomment %}
-
 <h1 class="left">{{ collection.title }}</h1>
 
-{% comment %}
-  Collection sorting. Needs the JavaScript that is at the bottom of this file.
-{% endcomment %}
 {% if collection.products_count > 1 %}
 <select class="sort-by right">
   <option value="manual">Featured</option>
@@ -40,13 +19,6 @@
   <option value="best-selling">Best Selling</option>
  </select>
 {% endif %}
-
-{% comment %}
-  Listing all tags within the current collection.
-  Shopify uses product tags to manage subcategories inside collections.
-  See 'How do I create subcategories of products?' at 
-  http://bit.ly/1j1Dti4 for details.
-{% endcomment %}
 
 {% if collection.all_tags.size > 0 %}
 <ul class="subcategories clearfix clear">
@@ -63,7 +35,7 @@
     {{ tag | link_to_tag: tag }}
   </li>
   {% endif %}
-  {% endfor %}  
+  {% endfor %}
 </ul>
 {% endif %}
 
@@ -89,9 +61,7 @@
 
 {% endpaginate %}
 
-{% comment %}
-  JavaScript for collection sorting.
-{% endcomment %}
+
 <script>
 jQuery('.sort-by')
   .val('{{ collection.sort_by | default: collection.default_sort_by }}')
