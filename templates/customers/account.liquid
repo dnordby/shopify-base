@@ -6,14 +6,13 @@
 
 {% endcomment %}
 
-<h1>{{ 'customer.account.title' | t }}</h1>
+<h1>My Account</h1>
 
-<hr class="hr--small">
+<hr>
 
-<div class="grid">
-
-  <div class="grid__item two-thirds medium-down--one-whole">
-    <h2 class="h4">{{ 'customer.orders.title' | t }}</h2>
+<div>
+  <div>
+    <h2>Past Orders</h2>
 
     {% comment %}
       If we have past orders, loop through each one
@@ -21,22 +20,22 @@
     {% paginate customer.orders by 20 %}
       {% if customer.orders.size != 0 %}
 
-        <div class="table-wrap">
-          <table class="full">
+        <div>
+          <table>
             <thead>
               <tr>
-                <th>{{ 'customer.orders.order_number' | t }}</th>
-                <th>{{ 'customer.orders.date' | t }}</th>
-                <th>{{ 'customer.orders.payment_status' | t }}</th>
-                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-                <th>{{ 'customer.orders.total' | t }}</th>
+                <th>{{ 'Order Number' }}</th>
+                <th>{{ 'Order Date' }}</th>
+                <th>{{ 'Order Payment Status' }}</th>
+                <th>{{ 'Order Fulfillment Status' }}</th>
+                <th>{{ 'Order Total' }}</th>
               </tr>
             </thead>
             <tbody>
               {% for order in customer.orders %}
                 <tr>
                   <td>{{ order.name | link_to: order.customer_url }}</td>
-                  <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+                  <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
                   <td>{{ order.financial_status_label }}</td>
                   <td>{{ order.fulfillment_status_label }}</td>
                   <td>{{ order.total_price | money }}</td>
@@ -48,7 +47,7 @@
 
       {% else %}
 
-        <p>{{ 'customer.orders.none' | t }}</p>
+        <p>You haven't placed any orders yet!</p>
 
       {% endif %}
       {% if paginate.pages > 1 %}
@@ -60,10 +59,10 @@
     {% endpaginate %}
   </div>
 
-  <div class="grid__item one-third medium-down--one-whole">
-    <h2 class="h4">{{ 'customer.account.details' | t }}</h2>
+  <div>
+    <h2>Account Details</h2>
 
-    <h3 class="h5">{{ customer.name }}</h3>
+    <h3>{{ customer.name }}</h3>
 
     {% if customer.default_address != nil %}
       <p>
@@ -96,7 +95,7 @@
 
     {% endif %}
 
-    <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+    <p><a href="/account/addresses">{{ 'View All Addresses' }} ({{ customer.addresses_count }})</a></p>
   </div>
 
 </div>

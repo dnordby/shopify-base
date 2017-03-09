@@ -6,11 +6,10 @@ To initialize run:
   - `git remote remove origin`
   - `git remote add origin git@github.com:[link-to-your-new-repo-here].git`
   - `npm install`
-  - Rename `example-config.yml` to `config.yml` and replace password, theme ID, and store fields. For additional help, check out the [Themekit documentation](http://shopify.github.io/themekit/). 
+  - Rename `example-config.yml` to `config.yml` and replace password, theme ID, and store fields. For additional help, check out the [Themekit documentation](http://shopify.github.io/themekit/).
+  - `theme replace`
 
 To begin coding:
  - Open terminal and run each of the following commands in **separate** tabs:
    - `theme watch`
    - `webpack --watch`
-
-Other notes:

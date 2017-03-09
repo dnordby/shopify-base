@@ -21,9 +21,9 @@
           </a>
         </div>
         {% if product.images.size > 1 %}
-          <ul class="product-photo-thumbs clearfix grid">
+          <ul class="product-photo-thumbs">
             {% for image in product.images %}
-            <li class="product-photo-thumb two-per-row">
+            <li class="product-photo-thumb">
               <a href="{{ image | img_url: 'medium' }}">
                 <img src="{{ image | img_url: 'medium' }}" alt="{{ image.alt | escape }}" />
               </a>
@@ -43,15 +43,15 @@
       {% else %}
         {% assign vendor_url = product.vendor | url_for_vendor %}
       {% endif %}
-      <h2 itemprop="brand" class="delta">{{ product.vendor | link_to: vendor_url }}</h2>
+      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
 
-      <div id="product-description" class="rte" itemprop="description">
+      <div id="product-description" itemprop="description">
         {{ product.description }}
       </div>
 
       <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
 
-      <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="delta">
+      <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
         {% if product.available %}
           <link itemprop="availability" href="http://schema.org/InStock" />
@@ -98,11 +98,11 @@
         <div>
         {% if collection.previous_product %}
           {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-          <span class="left">{{ '&larr; Previous Product' | link_to: prev_url }}</span>
+          <span>{{ '&larr; Previous Product' | link_to: prev_url }}</span>
         {% endif %}
         {% if collection.next_product %}
           {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-          <span class="right">{{ 'Next Product &rarr;' | link_to: next_url }}</span>
+          <span>{{ 'Next Product &rarr;' | link_to: next_url }}</span>
         {% endif %}
         </div>
         {% endif %}

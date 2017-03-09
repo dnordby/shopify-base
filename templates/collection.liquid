@@ -5,7 +5,7 @@
 
 {% paginate collection.products by products_per_page %}
 
-<h1 class="left">{{ collection.title }}</h1>
+<h1>{{ collection.title }}</h1>
 
 {% if collection.products_count > 1 %}
 <select class="sort-by right">
@@ -21,7 +21,7 @@
 {% endif %}
 
 {% if collection.all_tags.size > 0 %}
-<ul class="subcategories clearfix clear">
+<ul>
   <li class="{% unless current_tags %} active{% endunless %}">
     {{ 'All' | link_to_remove_tag: current_tags.first }}
   </li>
@@ -40,12 +40,12 @@
 {% endif %}
 
 {% if collection.description.size > 0 %}
-<div class="rte clearfix">
+<div>
   {{ collection.description }}
 </div>
 {% endif %}
 
-<ul class="grid clearfix">
+<ul>
 {% for product in collection.products %}
   {% include 'product-grid-item' with products_per_row %}
 {% else %}
@@ -54,7 +54,7 @@
 </ul>
 
 {% if paginate.pages > 1 %}
-<div class="pagination centered">
+<div>
   {{ paginate | default_pagination }}
 </div>
 {% endif %}

@@ -1,10 +1,10 @@
 <!-- /templates/customers/activate_account.liquid -->
 
-<div class="grid">
-  <div class="grid__item large--one-third push--large--one-third text-center">
+<div>
+  <div>
 
-    <h1>{{ 'customer.activate_account.title' | t }}</h1>
-    <p>{{ 'customer.activate_account.subtext' | t }}</p>
+    <h1>{{ 'Activate Account' }}</h1>
+    <p>{{ 'One more step! Please set your password.' }}</p>
 
     {% comment %}
       This form must use 'activate_customer_password'
@@ -14,14 +14,14 @@
 
         {{ form.errors | default_errors }}
 
-        <label for="CustomerPassword" class="hidden-label">{{ 'customer.activate_account.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full" placeholder="{{ 'customer.activate_account.password' | t }}">
+        <label for="CustomerPassword">{{ 'Password' }}</label>
+        <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'Password' }}">
 
-        <label for="CustomerPasswordConfirmation" class="hidden-label">{{ 'customer.activate_account.password_confirm' | t }}</label>
-        <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" class="input-full" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+        <label for="CustomerPasswordConfirmation">{{ 'Password Confirmation' }}</label>
+        <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" placeholder="{{ 'Password Confirmation' }}">
 
-        <input type="submit" class="btn btn--full" value="{{ 'customer.activate_account.submit' | t }}">
-        <input type="submit" class="btn--secondary btn--full" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
+        <input type="submit" value="{{ 'Submit' }}">
+        <input type="submit" name="decline" value="{{ 'Cancel' }}">
       {% endform %}
     </div>
 

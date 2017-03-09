@@ -1,40 +1,40 @@
 <!-- /templates/customers/login.liquid -->
 
-<div class="grid">
+<div>
 
-  <div class="grid__item large--one-third push--large--one-third text-center">
+  <div>
 
     {% comment %}
       If a user has successfully requested a new password, the form.posted_successfully? variable
       is set to true within the 'recover_customer_password' form only. Within that form you'll see
       the variable 'resetPassword' set to true, which is used to initialize timber.resetPasswordSuccess().
     {% endcomment %}
-    <div class="note form-success" id="ResetSuccess" style="display:none;">
-      {{ 'customer.recover_password.success' | t }}
+    <div id="ResetSuccess" style="display:none;">
+      {{ 'Recover Password Email Sent!' }}
     </div>
 
     <div id="CustomerLoginForm" class="form-vertical">
       {% form 'customer_login' %}
 
-        <h1>{{ 'customer.login.title' | t }}</h1>
+        <h1>{{ 'Login' }}</h1>
 
         {{ form.errors | default_errors }}
 
-        <label for="CustomerEmail" class="hidden-label">{{ 'customer.login.email' | t }}</label>
-        <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
+        <label for="CustomerEmail">{{ 'Email' }}</label>
+        <input type="email" name="customer[email]" id="CustomerEmail" class="{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'Email' }}" autocorrect="off" autocapitalize="off" autofocus>
 
         {% if form.password_needed %}
-          <label for="CustomerPassword" class="hidden-label">{{ 'customer.login.password' | t }}</label>
-          <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customer.login.password' | t }}">
+          <label for="CustomerPassword">{{ 'Password' }}</label>
+          <input type="password" value="" name="customer[password]" id="CustomerPassword" class="{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'Password' }}">
         {% endif %}
 
         <p>
-          <input type="submit" class="btn btn--full" value="{{ 'customer.login.sign_in' | t }}">
+          <input type="submit" value="{{ 'Sign In' }}">
         </p>
-        <p><a href="/">{{ 'customer.login.cancel' | t }}</a></p>
-        <p>{{ 'layout.customer.create_account' | t | customer_register_link }}</p>
+        <p><a href="/">{{ 'Cancel' }}</a></p>
+        <p>{{ 'Create Account' | customer_register_link }}</p>
         {% if form.password_needed %}
-          <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+          <p><a href="#recover" id="RecoverPassword">{{ 'Forgot Password' }}</a></p>
         {% endif %}
 
       {% endform %}
@@ -45,8 +45,8 @@
     {% endcomment %}
     <div id="RecoverPasswordForm" style="display: none;">
 
-      <h2>{{ 'customer.recover_password.title' | t }}</h2>
-      <p>{{ 'customer.recover_password.subtext' | t }}</p>
+      <h2>{{ 'Reset Password' }}</h2>
+      <p>{{ 'Enter your email address and a reset-password link will be sent to you.' }}</p>
 
       <div class="form-vertical">
         {% form 'recover_customer_password' %}
@@ -60,13 +60,13 @@
             {% assign resetPassword = true %}
           {% endif %}
 
-          <label for="RecoverEmail" class="hidden-label">{{ 'customer.recover_password.email' | t }}</label>
-          <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+          <label for="RecoverEmail">{{ 'Email' }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'Email' }}" autocorrect="off" autocapitalize="off">
 
           <p>
-            <input type="submit" class="btn btn--full" value="{{ 'customer.recover_password.submit' | t }}">
+            <input type="submit" value="{{ 'Submit' }}">
           </p>
-          <button type="button" id="HideRecoverPasswordLink" class="text-link">{{ 'customer.recover_password.cancel' | t }}</button>
+          <button type="button" id="HideRecoverPasswordLink">{{ 'Cancel' }}</button>
         {% endform %}
       </div>
 
@@ -79,10 +79,10 @@
     {% if shop.checkout.guest_login %}
       <hr>
 
-      <h2>{{ 'customer.login.guest_title' | t }}</h2>
+      <h2>{{ 'Continue as Guest' }}</h2>
 
       {% form 'guest_login' %}
-        <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+        <input type="submit" value="{{ 'Enter' }}">
       {% endform %}
     {% endif %}
 
