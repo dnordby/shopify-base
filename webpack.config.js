@@ -1,5 +1,5 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-let extractSCSS = new ExtractTextPlugin('./style.css');
+let extractSCSS = new ExtractTextPlugin('./style.scss.liquid');
 module.exports = {
     entry: "./src/js/app.js",
     output: {
@@ -10,7 +10,7 @@ module.exports = {
         loaders: [
             {
               test: /app\.scss$/,
-              loader: extractSCSS.extract(['css', 'sass'])
+              loader: extractSCSS.extract(['css', 'autoprefixer', 'sass'])
             }
         ]
     },
