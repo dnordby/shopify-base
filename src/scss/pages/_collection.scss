@@ -1,0 +1,16 @@
+.collection-wrapper {
+  .grid-wrapper {
+    .product-wrapper {
+      background-color: $grey;
+      text-align: center;
+      .product-title-wrapper {
+        display: inline-block;
+        position: relative;
+        .product-title,
+        .product-price {
+          display: block;
+        }
+      }
+    }
+  }
+}

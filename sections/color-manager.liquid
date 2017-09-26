@@ -1,0 +1,100 @@
+{% schema %}
+	{
+		"name": "Swatch Color Settings",
+		"class": "color-wrapper",
+		"blocks": [
+			{
+				"type": "color",
+				"name": "Color",
+				"settings": [
+					{
+						"id": "color_image",
+						"type": "text",
+						"label": "Hex Color/Image URL"
+					},
+					{
+						"id": "color_name",
+						"type": "text",
+						"label": "Color Name"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}
+
+
+{% for tag in product.tags %}
+	{% if tag contains 'color' %}
+		{% assign product_title_handle = product.title | handle %}
+		{% assign current_product_handle = product.handle %}
+		{% if collections[product_title_handle].title != '' %}
+			{% assign collection_exists = true %}
+		{% else %}
+			{% assign collection_exists = false %}
+		{% endif %}
+		<label>Color{% if collection_exists and collections[product_title_handle].products_count > 1 %}s{% endif %}</label>
+		{% if collection_exists and collections[product_title_handle].products_count > 0 %}
+			{% for product in collections[product_title_handle].products %}
+				{% for tag in product.tags %}
+					{% if tag contains 'color' %}
+						{% assign color = '' %}
+						{% assign tag_colors = tag | split: ':' | last %}
+						{% assign tag_color_array = tag_colors | split: '-/-' %}
+						{% assign tag_handle = tag_color_array | join: '-' %}
+						{% for next_color in tag_color_array %}
+							{% assign attach_color = next_color | split: '-' | join: ' ' %}
+							{% if color == '' %}
+								{% assign color = color | append: attach_color %}
+							{% else %}
+								{% assign color = color | append: ' - ' | append: attach_color %}
+							{% endif %}
+						{% endfor %}
+
+						{% capture full_handle %}{{product_title_handle}}-{{ tag_handle }}{% endcapture %}
+						{% unless current_product_handle == full_handle %}
+							<a href="/products/{{ full_handle }}">
+						{% endunless %}
+								<div class="color-link-wrapper">
+									{% for block in section.blocks %}
+										{% assign color_background = block.settings.color_name | handleize %}
+										{% if color_background == tag_handle %}
+											{% if block.settings.color_image contains 'http' %}
+												{% capture background %}style="background-image: url({{ block.settings.color_image }});"{% endcapture %}
+											{% else %}
+												{% capture background %}style="background-color: {{ block.settings.color_image }};"{% endcapture %}
+											{% endif %}
+											<div class="color-swatch" {{ background }}></div>
+										{% endif %}
+									{% endfor %}
+									<div class="color-label">
+										<p>{{ color }}</p>
+									</div>
+								</div>
+						{% unless current_product_handle == full_handle %}
+							</a>
+						{% endunless %}
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		{% else %}
+			{% assign color = '' %}
+			{% assign tag_colors = tag | split: ':' | last %}
+			{% assign tag_color_array = tag_colors | split: '-/-' %}
+			{% for next_color in tag_color_array %}
+				{% assign attach_color = next_color | split: '-' | join: ' ' %}
+				{% if color == '' %}
+					{% assign color = color | append: attach_color %}
+				{% else %}
+					{% assign color = color | append: ' - ' | append: attach_color %}
+				{% endif %}
+			{% endfor %}
+			<div class="color-link-wrapper">
+				<div class="color-swatch {{ tag_handle }}"></div>
+				<div class="color-label">
+					<p>{{ color }}</p>
+				</div>
+			</div>
+		{% endif %}
+	{% endif %}
+{% endfor %}

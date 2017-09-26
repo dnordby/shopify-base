@@ -1,6 +1,20 @@
 // REQUIRE ALL SCSS FROM APP.SCSS
-require("./../scss/app.scss");
+import './../scss/app.scss';
 
 // REQUIRE EACH JS MODULE
-require("./home.js");
-require("./about.js");
+import landing from '../js/pages/landing.js';
+import about from '../js/pages/about.js';
+
+const CarhartWip = {
+  settings: {},
+  init() {
+    landing();
+    about();
+  }
+};
+
+window.CarhartWip = CarhartWip;
+
+$(function(){
+  CarhartWip.init();
+});

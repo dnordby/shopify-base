@@ -1,4 +1,22 @@
-// IMPORT ALL STYLES HERE FOR IMPORT ONCE IN SRC/JS/APP.JS
-@import './global/variables';
-@import './global/fonts';
-@import './global/global';
+// Base variables
+@import 'base/variables';
+
+// Vendor
+@import 'vendor/vendor';
+
+// Settings
+@import 'base/mixins';
+@import 'base/fonts';
+@import 'base/typography';
+
+// Layout & Global
+@import 'layout/global';
+@import 'layout/buttons-and-inputs';
+@import 'layout/icons';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/modals';
+
+// Pages
+@import 'pages/collection';
+@import 'pages/product';

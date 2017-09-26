@@ -1,0 +1,44 @@
+* {
+  &:focus, &:active, &:hover, &:visited {
+    outline: 0 !important;
+  }
+}
+
+body {
+  &.no-scroll {
+    overflow: hidden;
+    position: absolute;
+  }
+}
+
+// Spacers
+.lg-top {
+  margin-top: $lg-top;
+}
+.md-top {
+  margin-top: $md-top;
+}
+.sm-top {
+  margin-top: $sm-top;
+}
+.xs-top {
+  margin-top: $xs-top;
+}
+.xxs-top {
+  margin-top: $xxs-top;
+}
+
+
+// Image aspect ratios
+.img-4-3 {
+  @include aspect-ratio(4, 3);
+}
+.img-6-4 {
+  @include aspect-ratio(6, 4);
+}
+.img-3-4 {
+  @include aspect-ratio(3, 4);
+}
+.img-16-9 {
+  @include aspect-ratio(16, 9);
+}
