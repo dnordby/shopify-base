@@ -6,7 +6,11 @@ assets/style.scss.liquid:
 layout/theme.liquid:
   development: 2017-09-26T13:59:48-04:00   59e26ddce1a42ab33468a64899c333af
 sections/color-manager.liquid:
-  development: 2017-09-26T16:36:49-04:00   f5e16709231b63190d3f0c9703317ea4
+  development: 2017-09-26T17:46:21-04:00   115733e9bee71f148728318e1560817f
+snippets/color-link-markup.liquid:
+  development: 2017-09-26T17:32:08-04:00   d528f25e2903e6a333c951b768b2db54
+snippets/color-set-variables.liquid:
+  development: 2017-09-26T17:33:21-04:00   69c3bc2acf2b9a73802903a46d62dcfc
 snippets/head.liquid:
   development: 2017-09-26T15:34:43-04:00   9bd3bc3008831b7948ffd003ef082816
 templates/collection.liquid:
