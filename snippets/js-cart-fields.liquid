@@ -1,0 +1,4 @@
+<input type="hidden" class="js-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
+<input type="hidden" class="js-variant-title" value="{{ product.title }}">
+<input type="hidden" class="js-variant-price" value="{{ product.selected_or_first_available_variant.price | money }}">
+<input type="hidden" class="js-available-quantity" value="{{ product.selected_or_first_available_variant.inventory_quantity }}">

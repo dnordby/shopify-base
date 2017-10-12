@@ -1,0 +1,20 @@
+<div class="cart-drawer">
+	{% for item in cart.items %}
+		<div class="js-line-item">
+			<input type="hidden" value={{ item.variant_id }} class="js-variant-id">
+			<input type="hidden" value={{ item.quantity }} class="js-quantity">
+			<input type="hidden" value={{ item.variant.inventory_quantity }} class="js-available-quantity">
+			<input type="hidden" value={{ item.variant.price | money }} class="js-unit-price">
+			<h3>{{ item.title }}</h3>
+			<p class="js-visual-quantity">Quantity: {{ item.quantity }}</p>
+			<p>Unit Price: {{ item.price | money }}</p>
+			<p class="js-total-price">Total Price: {{ item.line_price | money }}</p>
+			<p class="js-subtract pointer js-update" data-action="subtract">SUBTRACT</p>
+			<p class="js-add pointer js-update" data-action="increase">ADD</p>
+			<p class="js-remove pointer">REMOVE</p>
+		</div>
+	{% endfor %}
+	<form action="/cart" method="post">
+		<input type="submit" name="checkout" value="Checkout">
+	</form>
+</div>
