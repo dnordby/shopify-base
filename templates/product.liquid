@@ -8,6 +8,7 @@
   <meta itemprop="image" content="{{ product | img_url: 'grande' }}" />
 
   <form action="/cart/add" method="post" enctype="multipart/form-data">
+    {% include 'js-cart-fields' %}
     <div class="product-photos">
       {% if product.images.size == 0 %}
         <div class="product-photo-container">
@@ -69,21 +70,7 @@
         </p>
       </div>
 
-      {% assign hide_default_title = false %}
-      {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-        {% assign hide_default_title = true %}
-      {% endif %}
-
-      {% comment %} LOOPING THROUGH VARIANTS {% endcomment %}
-      <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
-        <select id="product-select" name="id">
-          {% for variant in product.variants %}
-            <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">
-              {{ variant.title }} - {{ variant.price | money }}
-            </option>
-          {% endfor %}
-        </select>
-      </div>
+      {% include 'variant-loop' %}
 
       <div id="backorder" class="hidden">
         <p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
