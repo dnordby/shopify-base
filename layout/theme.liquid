@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    {% include 'head' %}
+    <!-- LOAD SHOPIFY APP JS -->
+    {{ content_for_header }}
+  </head>
+
+  <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+    <!-- MODALS -->
+
+    <!-- HEADER -->
+    {% include 'header' %}
+
+    <!-- MAIN BODY -->
+    <div class="container-fluid">
+      <div id="main" role="main">
+        {{ content_for_layout }}
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    {% include 'footer' %}
+
+  </body>
+
+</html>

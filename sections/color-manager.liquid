@@ -1,0 +1,56 @@
+{% for tag in product.tags %}
+	{% if tag contains 'color' %}
+		{% assign product_title_handle = product.title | handle %}
+		{% assign current_product_handle = product.handle %}
+		{% assign collection_exists = false %}
+		{% unless collections[product_title_handle].title == '' %}
+			{% assign collection_exists = true %}
+		{% endunless %}
+
+		<label>Color{% if collection_exists and collections[product_title_handle].products_count > 1 %}s{% endif %}</label>
+
+		{% if collection_exists and collections[product_title_handle].products_count > 0 %}
+			{% for product in collections[product_title_handle].products %}
+				{% for tag in product.tags %}
+					{% if tag contains 'color' %}
+						{% include 'color-set-variables' %}
+						{% unless current_product_handle == full_handle %}<a href="/products/{{ full_handle }}">{% endunless %}
+							{% include 'color-link-markup' %}
+						{% unless current_product_handle == full_handle %}</a>{% endunless %}
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		{% else %}
+			{% include 'color-set-variables' %}
+			{% include 'color-link-markup' %}
+		{% endif %}
+
+	{% endif %}
+{% endfor %}
+
+
+
+{% schema %}
+	{
+		"name": "Swatch Color Settings",
+		"class": "color-wrapper",
+		"blocks": [
+			{
+				"type": "color",
+				"name": "Color",
+				"settings": [
+					{
+						"id": "color_image",
+						"type": "text",
+						"label": "Hex Color/Image URL"
+					},
+					{
+						"id": "color_name",
+						"type": "text",
+						"label": "Color Name"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}

@@ -1,0 +1,108 @@
+{%- assign max_height = 250 -%}
+
+<div class="collection-wrapper">
+  <header class="collection-header">
+    <div class="page-width">
+      <div>
+        <h1>{{ collection.title }}</h1>
+        {% if collection.description != blank %}
+          <div>{{ collection.description }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="grid-wrapper row">
+    {% assign tag_string = '' %}
+
+    {% comment %} ************* {% endcomment %}
+    {% comment %} GROUPING LOOP {% endcomment %}
+    {% comment %} ************* {% endcomment %}
+    {% for tag in collection.all_tags %}
+      {% if tag contains 'style' %}
+        {% unless tag_string contains tag %}
+          {% paginate collection.products by 1000 %}
+            {% for product in collection.products %}
+              {% if product.tags contains tag %}
+                  <div class="product-wrapper{% unless product.available %} sold-out{% endunless %} col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <a href="{{ product.url }}">
+                      {% capture img_id %}ProductCardImage-{{ product.id }}{% endcapture %}
+                      {% capture wrapper_id %}ProductCardImageWrapper-{{ product.id }}{% endcapture %}
+                      {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                      <div class="featured-image-wrapper">
+                        <img src="{{ product.featured_image.src | img_url: '200x' }}">
+                      </div>
+
+                      <div class="product-title-wrapper">
+                        <div class="product-title">
+                          <p class="h4">{{ product.title }}</p>
+                        </div>
+                        <div class="product-price">
+                          {%- assign compare_at_price = product.compare_at_price -%}
+                          {%- assign price = product.price -%}
+                          {%- assign price_varies = product.price_varies -%}
+                          {%- assign available = product.available -%}
+                          {%- assign money_price = price | money -%}
+
+                          <p>
+                            {% if compare_at_price > price %}
+                              {% if price_varies %}
+                                <span class="visually-hidden">Price</span>
+                                <s class="price">{{ compare_at_price | money }}</s>
+                                <span class="sale-price">
+                                  {{ money_price }}
+                                  <span class="sale-price-label">Sale Price</span>
+                                </span>
+                              {% else %}
+                                <span class="visually-hidden">{{ 'Price' }}</span>
+                                <s class="price">{{ compare_at_price | money }}</s>
+                                <span class="sale-price">
+                                  {{ money_price }}
+                                  <span class="sale-price-label">Sale Price</span>
+                                </span>
+                              {% endif %}
+                            {% else %}
+
+                              {% if price_varies %}
+                                <span class="price">{{ money_price }}</span>
+                              {% else %}
+                                <span class="visually-hidden">{{ 'Price' }}</span>
+                                <span class="price">{{ money_price }}</span>
+                              {% endif %}
+                            {% endif %}
+
+                            {% unless available %}
+                              <span class="sold-out">Sold Out</span>
+                            {% endunless %}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endpaginate %}
+        {% endunless %}
+
+        {% if tag_string == '' %}
+          {% assign tag_string = tag_string | append: tag %}
+        {% else %}
+          {% assign tag_string = tag_string |append: ',' | append: tag %}
+        {% endif %}
+
+      {% endif %}
+    {% endfor %}
+    {% comment %} ***************** {% endcomment %}
+    {% comment %} END GROUPING LOOP {% endcomment %}
+    {% comment %} ***************** {% endcomment %}
+
+    {% if is_empty_collection %}
+      <div class="no-matching-products">
+        <p>No products in this collection</p>
+      </div>
+    {% endif %}
+
+  </div>
+</div>

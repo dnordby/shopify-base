@@ -1,0 +1,91 @@
+<!-- /templates/customers/login.liquid -->
+
+<div>
+
+  <div>
+
+    {% comment %}
+      If a user has successfully requested a new password, the form.posted_successfully? variable
+      is set to true within the 'recover_customer_password' form only. Within that form you'll see
+      the variable 'resetPassword' set to true, which is used to initialize timber.resetPasswordSuccess().
+    {% endcomment %}
+    <div id="ResetSuccess" style="display:none;">
+      {{ 'Recover Password Email Sent!' }}
+    </div>
+
+    <div id="CustomerLoginForm" class="form-vertical">
+      {% form 'customer_login' %}
+
+        <h1>{{ 'Login' }}</h1>
+
+        {{ form.errors | default_errors }}
+
+        <label for="CustomerEmail">{{ 'Email' }}</label>
+        <input type="email" name="customer[email]" id="CustomerEmail" class="{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'Email' }}" autocorrect="off" autocapitalize="off" autofocus>
+
+        {% if form.password_needed %}
+          <label for="CustomerPassword">{{ 'Password' }}</label>
+          <input type="password" value="" name="customer[password]" id="CustomerPassword" class="{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'Password' }}">
+        {% endif %}
+
+        <p>
+          <input type="submit" value="{{ 'Sign In' }}">
+        </p>
+        <p><a href="/">{{ 'Cancel' }}</a></p>
+        <p>{{ 'Create Account' | customer_register_link }}</p>
+        {% if form.password_needed %}
+          <p><a href="#recover" id="RecoverPassword">{{ 'Forgot Password' }}</a></p>
+        {% endif %}
+
+      {% endform %}
+    </div>
+
+    {% comment %}
+      JS shows/hides this form in timber.loginForms()
+    {% endcomment %}
+    <div id="RecoverPasswordForm" style="display: none;">
+
+      <h2>{{ 'Reset Password' }}</h2>
+      <p>{{ 'Enter your email address and a reset-password link will be sent to you.' }}</p>
+
+      <div class="form-vertical">
+        {% form 'recover_customer_password' %}
+
+          {{ form.errors | default_errors }}
+
+          {% comment %}
+            Assign variable to be used after timber.init() is run in theme.liquid
+          {% endcomment %}
+          {% if form.posted_successfully? %}
+            {% assign resetPassword = true %}
+          {% endif %}
+
+          <label for="RecoverEmail">{{ 'Email' }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'Email' }}" autocorrect="off" autocapitalize="off">
+
+          <p>
+            <input type="submit" value="{{ 'Submit' }}">
+          </p>
+          <button type="button" id="HideRecoverPasswordLink">{{ 'Cancel' }}</button>
+        {% endform %}
+      </div>
+
+    </div>
+
+    {% comment %}
+      If accounts are set as optional, the following will be shown as an option
+      during checkout, not on the default /login page.
+    {% endcomment %}
+    {% if shop.checkout.guest_login %}
+      <hr>
+
+      <h2>{{ 'Continue as Guest' }}</h2>
+
+      {% form 'guest_login' %}
+        <input type="submit" value="{{ 'Enter' }}">
+      {% endform %}
+    {% endif %}
+
+  </div>
+
+</div>
