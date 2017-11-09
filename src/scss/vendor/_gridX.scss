@@ -6,7 +6,11 @@
 
 // GENERAL COLUMN SETTINGS
 
+<<<<<<< HEAD
 [class*="col-"] {
+=======
+[class^="col-"] {
+>>>>>>> a7e5df2ea6b67f499d7035fd5d47bf9a05def636
   display: block;
   overflow: hidden;
   margin: $half-gutter-size;

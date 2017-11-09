@@ -1,9 +1,0 @@
-<footer class="container-fluid">
-  {% if linklists.footer.links.size > 0 %}
-    <p role="navigation">
-      {% for link in linklists.footer.links %}
-        <a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a>
-      {% endfor %}
-    </p>
-  {% endif %}
-</footer>
