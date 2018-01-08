@@ -6,7 +6,7 @@
   {% endif %}
 </style>
 <div data-section-id="{{ section.id }}" data-section-type="header-section">
-  <header role="banner">
+  <header role="banner" class="nav">
     {% if template.name == 'index' %}
       <h1 itemscope itemtype="http://schema.org/Organization">
     {% else %}
@@ -108,6 +108,7 @@
 {% schema %}
   {
     "name": "Header",
+    "class": "container-fluid",
     "settings": [
       {
         "type": "image_picker",

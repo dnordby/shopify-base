@@ -1,39 +1,70 @@
-let webpack = require("webpack");
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+let bootstrapFile = new ExtractTextPlugin('bootstrap.build');
+let scssFile = new ExtractTextPlugin('style.build');
 
 module.exports = {
-  entry: "./src/js/app.js",
-  output: {
-      path: __dirname + '/assets',
-      filename: "app.js"
+  entry: {
+    app: "./src/js/app.js"
   },
+  plugins: [
+    bootstrapFile,
+    scssFile,
+    new CopyWebpackPlugin([
+      {
+        from: __dirname + '/src/build/' + scssFile.filename,
+        to: __dirname + '/assets/style.scss.liquid',
+        transform: function(content, path) {
+          var data = content.toString();
+          returnContent = data.replace(/'{{/g, "{{");
+          returnContent = returnContent.replace(/}}'/g, "}}");
+          return returnContent;
+        }
+      },
+      {
+        from: __dirname + '/src/build/' + bootstrapFile.filename,
+        to: __dirname + '/assets/bootstrap.scss.liquid'
+      },
+      {
+        from: __dirname + '/src/build/app.js.liquid',
+        to: __dirname + '/assets/app.js.liquid'
+      }
+    ])
+  ],
   module: {
     rules: [
       {
-        test: /app\.scss$/,
-        use: ExtractTextPlugin.extract({
+        test: /bootstrap\.scss/,
+        use: bootstrapFile.extract({
           fallback: 'style-loader',
-<<<<<<< HEAD
-          use: ['css-loader', 'sass-loader']
-=======
-          use: ['css-loader', 'autoprefixer-loader', 'sass-loader']
->>>>>>> a7e5df2ea6b67f499d7035fd5d47bf9a05def636
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
+            'sass-loader'
+          ]
+        })
+      },
+      {
+        test: /app\.scss$/,
+        use: scssFile.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       },
       {
           test: /\.js$/,
-<<<<<<< HEAD
-          loader: 'babel-loader',
-
-          exclude: /node_modules/
-=======
           exclude: /node_modules/,
           loader: 'babel-loader'
->>>>>>> a7e5df2ea6b67f499d7035fd5d47bf9a05def636
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin('style.scss.liquid'),
-  ]
+  output: {
+      path: __dirname + '/src/build',
+      filename: "[name].js.liquid"
+  }
 };

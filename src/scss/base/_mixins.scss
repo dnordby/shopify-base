@@ -4,12 +4,12 @@
 }
 
 @mixin font-size($size-value: 1.6) {
-  // scss-lint:disable DuplicateProperty
+  /* scss-lint:disable DuplicateProperty  */
   font-size: ($size-value * 10) + px;
   font-size: $size-value + rem;
 }
 
-// Based on http://codepen.io/javasteve99/pen/hDxpn
+/* Based on http://codepen.io/javasteve99/pen/hDxpn */
 @mixin font-face($font-family, $file-path, $font-weight: 400, $font-style: normal) {
   @font-face {
     font-family: $font-family;
@@ -21,13 +21,13 @@
     font-weight: $font-weight;
     font-style: $font-style;
   }
-  // Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
-  // @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  //   @font-face {
-  //     font-family: $font-family;
-  //     src: url("{{ \'fonts-#{$file-path}.svg##{$font-family}\' | asset_url }}") format("svg");
-  //   }
-  // }
+  /* Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
+   @media screen and (-webkit-min-device-pixel-ratio: 0) {
+     @font-face {
+       font-family: $font-family;
+       src: url("{{ \'fonts-#{$file-path}.svg##{$font-family}\' | asset_url }}") format("svg");
+     }
+   } */
 }
 
 @mixin clearfix {

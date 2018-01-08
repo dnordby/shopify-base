@@ -11,7 +11,7 @@ body {
   }
 }
 
-// Spacers
+/* Spacers */
 .lg-top {
   margin-top: $lg-top;
 }
@@ -29,7 +29,7 @@ body {
 }
 
 
-// Image aspect ratios
+/* Image aspect ratios */
 .img-4-3 {
   @include aspect-ratio(4, 3);
 }

@@ -1,0 +1,17 @@
+<div class="grid-view-item{% unless product.available %} sold-out{% endunless %}">
+  <a class="grid-view-item__link grid-view-item__image-container" href="{{ product.url | within: collection }}">
+    <div class="grid-view-item__image-wrapper">
+      <div class="grid-view-item__image-ratio">
+        <img src="{{ product.featured_image | img_url: '300x300' }}" class="grid-view-item__image" alt="{{ product.featured_image.alt | escape }}">
+      </div>
+    </div>
+
+    <div class="h4 grid-view-item__title">{{ product.title }}</div>
+    {% if section.settings.show_vendor %}
+      <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    <div class="grid-view-item__meta">
+      {% include 'product-price' %}
+    </div>
+  </a>
+</div>
