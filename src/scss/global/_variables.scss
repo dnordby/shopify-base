@@ -6,11 +6,12 @@ $lg-break: 1200px;
 $half-gutter-size: 12px;
 $gutter-size: 24px;
 
-$columns: '{{ settings.the_cols }}';
+$columns: '{{ settings.columns }}';
 
 
 
 $black: #000000;
+$grey: lighten($black, 50%);
 $white: #FFFFFF;
 
 

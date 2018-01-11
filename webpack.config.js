@@ -13,7 +13,7 @@ module.exports = {
     scssFile,
     new CopyWebpackPlugin([
       {
-        from: __dirname + '/src/build/' + scssFile.filename,
+        from: __dirname + '/src/build/style.build',
         to: __dirname + '/assets/style.scss.liquid',
         transform: function(content, path) {
           var data = content.toString();
@@ -23,7 +23,7 @@ module.exports = {
         }
       },
       {
-        from: __dirname + '/src/build/' + bootstrapFile.filename,
+        from: __dirname + '/src/build/bootstrap.build',
         to: __dirname + '/assets/bootstrap.scss.liquid'
       },
       {
@@ -37,16 +37,7 @@ module.exports = {
       {
         test: /bootstrap\.scss/,
         use: bootstrapFile.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true
-              }
-            },
-            'sass-loader'
-          ]
+          use: ['raw-loader', {loader: './bootstrapNormalizer.js'}]
         })
       },
       {

@@ -12,6 +12,7 @@
 {% if collection.all_products_count < 1 %}
   {%- assign is_empty_collection = true -%}
 {% endif %}
+{%- assign default_sort = collection.default_sort_by -%}
 
 {% paginate collection.products by limit %}
   <div data-section-type="collection-template">
@@ -44,18 +45,16 @@
           <div class="filters-toolbar">
             {% if section.settings.sort_enable %}
               <div class="filters-toolbar__item">
-                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                 <label for="SortBy">{{ 'collections.sorting.title' | t }}</label>
                 <select name="SortBy" id="SortBy" class="filters-toolbar__input--sort">
-                  <option value="title-ascending" selected disabled>{{ 'collections.sorting.title' | t }}</option>
-                  <option value="manual">{{ 'collections.sorting.featured' | t }}</option>
-                  <option value="best-selling">{{ 'collections.sorting.best_selling' | t }}</option>
-                  <option value="title-ascending">{{ 'collections.sorting.az' | t }}</option>
-                  <option value="title-descending">{{ 'collections.sorting.za' | t }}</option>
-                  <option value="price-ascending">{{ 'collections.sorting.price_ascending' | t }}</option>
-                  <option value="price-descending">{{ 'collections.sorting.price_descending' | t }}</option>
-                  <option value="created-descending">{{ 'collections.sorting.date_descending' | t }}</option>
-                  <option value="created-ascending">{{ 'collections.sorting.date_ascending' | t }}</option>
+                  <option value="manual"{% if default_sort == "manual" %} selected{%- endif -%}>{{ 'collections.sorting.featured' | t }}</option>
+                  <option value="best-selling"{% if default_sort == "best-selling" %} selected{%- endif -%}>{{ 'collections.sorting.best_selling' | t }}</option>
+                  <option value="title-ascending"{% if default_sort == "title-ascending" %} selected{%- endif -%}>{{ 'collections.sorting.az' | t }}</option>
+                  <option value="title-descending"{% if default_sort == "title-descending" %} selected{%- endif -%}>{{ 'collections.sorting.za' | t }}</option>
+                  <option value="price-ascending"{% if default_sort == "price-ascending" %} selected{%- endif -%}>{{ 'collections.sorting.price_ascending' | t }}</option>
+                  <option value="price-descending"{% if default_sort == "price-descending" %} selected{%- endif -%}>{{ 'collections.sorting.price_descending' | t }}</option>
+                  <option value="created-descending"{% if default_sort == "created-descending" %} selected{%- endif -%}>{{ 'collections.sorting.date_descending' | t }}</option>
+                  <option value="created-ascending"{% if default_sort == "created-ascending" %} selected{%- endif -%}>{{ 'collections.sorting.date_ascending' | t }}</option>
                 </select>
                 <input id="DefaultSortBy" type="hidden" value="{{ collection.default_sort_by }}">
               </div>
@@ -91,24 +90,8 @@
     "settings": [
       {
         "type": "select",
-        "id": "layout",
-        "label": "Layout",
-        "default": "grid",
-        "options": [
-          {
-            "value": "grid",
-            "label": "Grid"
-          },
-          {
-            "value": "list",
-            "label": "List"
-          }
-        ]
-      },
-      {
-        "type": "select",
         "id": "grid",
-        "label": "Products per row (grid only)",
+        "label": "Products per row",
         "default": "4",
         "options": [
           {
@@ -124,15 +107,15 @@
             "label": "4"
           },
           {
-            "value": "5",
-            "label": "5"
+            "value": "6",
+            "label": "6"
           }
         ]
       },
       {
         "type": "select",
         "id": "rows",
-        "label": "Rows per page (grid only)",
+        "label": "Rows per page",
         "default": "2",
         "options": [
           {

@@ -1,5 +1,5 @@
-require("./../scss/bootstrap/bootstrap.scss");
-require("./../scss/app.scss");
+import bootstrap from "./../scss/bootstrap/bootstrap.scss";
+import appSass from "./../scss/app.scss";
 
 import $ from 'jquery';
 import AjaxCart from '../js/modules/cart';

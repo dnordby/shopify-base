@@ -1,4 +1,4 @@
-<ul class="site-nav">
+<ul class="navbar-nav">
   {%- for link in linklists[section.settings.main_linklist].links -%}
     {%- assign three_level_nav = false -%}
     {%- assign child_list_handle = link.title | handleize -%}
@@ -13,8 +13,8 @@
     {%- endif -%}
 
     {%- if linklists[child_list_handle].links != blank -%}
-      <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-has-popup="true">
-        <a href="{{ link.url }}" class="site-nav__link site-nav__link--main">{{ link.title }}</a>
+      <li class="nav-item dropdown{% if link.active %} active{% endif %}" aria-has-popup="true">
+        <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
 
         <div class="site-nav__dropdown" aria-expanded="false">
           {% if three_level_nav %}
@@ -24,11 +24,11 @@
                   {% for childlink in linklists[child_list_handle].links %}
                     {% assign grand_child_list_handle = childlink.title | handle %}
                     <div class="site-nav__childlist-item">
-                      <a href="{{ childlink.url }}" class="site-nav__link site-nav__child-link site-nav__child-link--parent">{{ childlink.title | escape }}</a>
+                      <a href="{{ childlink.url }}" class="nav-link">{{ childlink.title | escape }}</a>
                       {% for grandchildlink in linklists[grand_child_list_handle].links %}
                         <ul>
-                          <li>
-                            <a href="{{ grandchildlink.url }}" class="site-nav__link site-nav__child-link">{{ grandchildlink.title | escape }}</a>
+                          <li class="nav-item{% if link.active %} active{% endif %}">
+                            <a href="{{ grandchildlink.url }}" class="nav-link">{{ grandchildlink.title | escape }}</a>
                           </li>
                         </ul>
                       {% endfor %}
@@ -41,7 +41,7 @@
             <ul>
               {% for childlink in linklists[child_list_handle].links %}
                 <li {% if childlink.active %}class="site-nav--active"{% endif %}>
-                  <a href="{{ childlink.url }}" class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}">{{ childlink.title | escape }}</a>
+                  <a href="{{ childlink.url }}" class="nav-link">{{ childlink.title | escape }}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -49,8 +49,8 @@
         </div>
       </li>
     {% else %}
-      <li {% if link.active %}class="site-nav--active"{% endif %}>
-        <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+      <li class="nav-item{% if link.active %} active{% endif %}">
+        <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
       </li>
     {% endif %}
   {% endfor %}

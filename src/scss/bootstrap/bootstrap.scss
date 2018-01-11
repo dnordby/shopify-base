@@ -7,7 +7,43 @@
 
 /* Core variables and mixins */
 @import "_variables.scss";
-@import "_mixins.scss";
+// Utilities
+@import "mixins/_misc.scss";
+@import "mixins/_breakpoints.scss";
+@import "mixins/_hover.scss";
+@import "mixins/_image.scss";
+@import "mixins/_badge.scss";
+@import "mixins/_resize.scss";
+@import "mixins/_screen-reader.scss";
+@import "mixins/_size.scss";
+@import "mixins/_reset-text.scss";
+@import "mixins/_text-emphasis.scss";
+@import "mixins/_text-hide.scss";
+@import "mixins/_text-truncate.scss";
+@import "mixins/_transforms.scss";
+@import "mixins/_visibility.scss";
+
+// Components
+@import "mixins/_alert.scss";
+@import "mixins/_buttons.scss";
+@import "mixins/_cards.scss";
+@import "mixins/_pagination.scss";
+@import "mixins/_lists.scss";
+@import "mixins/_list-group.scss";
+@import "mixins/_nav-divider.scss";
+@import "mixins/_forms.scss";
+@import "mixins/_table-row.scss";
+
+// Skins
+@import "mixins/_background-variant.scss";
+@import "mixins/_border-radius.scss";
+@import "mixins/_gradients.scss";
+
+// Layout
+@import "mixins/_clearfix.scss";
+@import "mixins/_grid-framework.scss";
+@import "mixins/_grid.scss";
+@import "mixins/_float.scss";
 @import "_custom.scss";
 @import "mixins/_clearfix.scss";
 @import "mixins/_breakpoints.scss";
@@ -17,8 +53,6 @@
 /* Reset and dependencies */
 @import "_normalize.scss";
 @import "_print.scss";
-
-
 @import "_reboot.scss";
 @import "_type.scss";
 @import "_images.scss";
@@ -55,4 +89,16 @@
 @import "_carousel.scss";
 
 /* Utility classes */
-@import "_utilities.scss";
+@import "utilities/_align.scss";
+@import "utilities/_background.scss";
+@import "utilities/_borders.scss";
+@import "utilities/_clearfix.scss";
+@import "utilities/_display.scss";
+@import "utilities/_flex.scss";
+@import "utilities/_float.scss";
+@import "utilities/_position.scss";
+@import "utilities/_screenreaders.scss";
+@import "utilities/_sizing.scss";
+@import "utilities/_spacing.scss";
+@import "utilities/_text.scss";
+@import "utilities/_visibility.scss";

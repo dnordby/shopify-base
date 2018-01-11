@@ -3,8 +3,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="{{ settings.color_primary }}">
 <link rel="canonical" href="{{ canonical_url }}">
-{{ 'bootstrap.scss' | asset_url | stylesheet_tag }}
-{{ 'style.scss' | asset_url | stylesheet_tag }}
+{{ 'bootstrap.scss.css' | asset_url | stylesheet_tag }}
+{{ 'style.scss.css' | asset_url | stylesheet_tag }}
 
 {% if settings.favicon != blank %}
   <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
