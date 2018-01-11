@@ -2,10 +2,16 @@ module.exports = function(source) {
   const path = require('path');
   var fs = require('fs');
   var exec = require('child_process').exec;
+  var imports = [];
   var returnScss = '';
 
   function getImports(file) {
-    var imports = file.match(/(\@).+(\;)/gi);
+    var line = file.split(/\n/g);
+    for (var i = line.length - 1; i >= 0; i--) {
+      if (line[i].startsWith("@import")) {
+        imports.push(line[i]);
+      }
+    }
     return cleanArray(imports);
   }
 
@@ -31,6 +37,5 @@ module.exports = function(source) {
     var importFileContent = fs.readFileSync(path.resolve('src/scss/bootstrap/' + initImportArray[i]), 'utf8');
     returnScss += importFileContent;
   }
-  console.log('RUNNING');
   return(returnScss);
 }
