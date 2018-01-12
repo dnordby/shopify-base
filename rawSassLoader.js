@@ -1,7 +1,9 @@
 module.exports = function(source) {
   const path = require('path');
-  var fs = require('fs');
-  var exec = require('child_process').exec;
+  const fs = require('fs');
+  const exec = require('child_process').exec;
+
+  var directory = this.context;
   var imports = [];
   var returnScss = '';
 
@@ -21,7 +23,7 @@ module.exports = function(source) {
         imports.splice(i, 1);
         i--;
       } else {
-        imports[i] = imports[i].replace('@import ', '').replace(/\"/gi, '').replace(/\;/gi, '');
+        imports[i] = imports[i].replace('@import ', '').replace(/(\"|\')/gi, '').replace(/\;/gi, '');
       }
     }
     return imports;
@@ -34,7 +36,7 @@ module.exports = function(source) {
 
 
   for (var i = 0; i < initImportArray.length; i++) {
-    var importFileContent = fs.readFileSync(path.resolve('src/scss/bootstrap/' + initImportArray[i]), 'utf8');
+    var importFileContent = fs.readFileSync(path.resolve(directory + '/' + initImportArray[i]), 'utf8');
     returnScss += importFileContent;
   }
   return(returnScss);

@@ -6,7 +6,7 @@ $lg-break: 1200px;
 $half-gutter-size: 12px;
 $gutter-size: 24px;
 
-$columns: '{{ settings.columns }}';
+$columns: {{ settings.columns }};
 
 
 
