@@ -6,10 +6,10 @@
     {{ content_for_header }}
   </head>
 
-  <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+  <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} container-fluid">
     {% section 'header' %}
 
-    <main role="main" id="MainContent" class="container-fluid">
+    <main role="main" id="MainContent">
       {{ content_for_layout }}
     </main>
 

@@ -9,7 +9,7 @@
     },
     "404": {
       "title": "404 Siden findes ikke",
-      "subtext_html": "Siden du leder efter findes ikke. Klik <a href=\"/collections/all\">her</a> for at fortsætte med at handle."
+      "subtext_html": "Siden du leder efter findes ikke. Klik <a href=\"\/collections\/all\">her<\/a> for at fortsætte med at handle."
     },
     "password_page": {
       "opening_soon": "Åbner Snart",
@@ -23,7 +23,7 @@
       "signup_form_email_placeholder": "Din email",
       "signup_form_submit": "Send",
       "signup_form_success": "Vi sender dig en email lige inden vi åbner!",
-      "admin_link_html": "Ejer du denne butik? <a href=\"/admin\">Log ind her</a>",
+      "admin_link_html": "Ejer du denne butik? <a href=\"\/admin\">Log ind her<\/a>",
       "password_link": "Åben ved brug af adgangskode",
       "powered_by_shopify_html": "Denne butik vil blive drevet af {{ shopify }}"
     },
@@ -80,7 +80,7 @@
       "checkout": "Gå til betaling",
       "empty": "Din kurv er i øjeblikket tom.",
       "cookies_required": "Slå cookies til for at bruge indkøbskurven",
-      "continue_browsing_html": "Fortsæt med at handle <a href=\"/collections/all\">her</a>.",
+      "continue_browsing_html": "Fortsæt med at handle <a href=\"\/collections\/all\">her<\/a>.",
       "item_quantity": "Produkt antal",
       "savings": "Du sparer"
     },
@@ -270,7 +270,7 @@
       "initial_value": "Gavekortets værdi: {{ value }}"
     }
   },
-  "date_formats":{
+  "date_formats": {
     "month_day_year": "%d. %B, %Y"
   }
 }

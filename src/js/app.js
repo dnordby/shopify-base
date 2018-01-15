@@ -1,4 +1,4 @@
-import bootstrapScss from "./../scss/bootstrap/bootstrap.scss";
+import bootstrapSass from "./../scss/bootstrap/bootstrap.scss";
 import appSass from "./../scss/app.scss";
 
 import $ from 'jquery';

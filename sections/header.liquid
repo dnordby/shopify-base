@@ -1,4 +1,33 @@
-<header data-section-id="{{ section.id }}" data-section-type="header-section">
+{%- if section.settings.announcement_enable -%}
+  {%- assign enable_announcement = true -%}
+{%- endif -%}
+{%- if section.settings.announcement_link -%}
+  {%- assign has_announcement_link = true -%}
+  {%- assign announcement_link = section.settings.announcement_link -%}
+{%- endif -%}
+{%- if section.settings.announcement_text != blank -%}
+  {%- assign has_announcement_text = true -%}
+  {%- assign announcement_text = section.settings.announcement_text -%}
+{%- endif -%}
+
+
+
+{% comment %} ANNOUNCEMENT BAR {% endcomment %}
+{% if enable_announcement and has_announcement_text %}
+  <div class="row announcement-bar">
+    {% if has_announcement_link %}
+      <a href="{{ announcement_link }}">
+    {% endif %}
+        <div class="col">
+          <p>{{ announcement_text }}</p>
+        </div>
+    {% if has_announcement_link %}
+      </a>
+    {% endif %}
+  </div>
+{% endif %}
+
+<header data-section-id="{{ section.id }}" data-section-type="header-section" class="row">
   <nav class="navbar navbar-toggleable-md">
     <div class="navbar-brand">
       <a href="{{ shop.url }}">{{ shop.name }}</a>
@@ -42,16 +71,23 @@
 {% schema %}
   {
     "name": "Header",
+    "class": "site-nav-wrapper",
     "settings": [
       {
-        "type": "radio",
-        "id": "align_logo",
-        "label": "Logo alignment",
-        "default": "left",
-        "options": [
-          {"value": "left", "label": "Left"},
-          {"value": "center", "label": "Centered"}
-        ]
+        "type": "checkbox",
+        "id": "announcement_enable",
+        "label": "Enable announcement bar",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement bar text"
+      },
+      {
+        "type": "url",
+        "id": "announcement_link",
+        "label": "Announcement bar link"
       },
       {
         "type": "image_picker",
@@ -59,56 +95,15 @@
         "label": "Logo image"
       },
       {
-        "type": "text",
-        "id": "logo_max_width",
-        "label": "Custom logo width (in pixels)",
-        "default": "100"
-      },
-      {
         "type": "link_list",
         "id": "main_linklist",
-        "label": "Menu",
+        "label": "Main Menu",
         "default": "main-menu"
       },
       {
-        "type": "header",
-        "content": "Announcement bar"
-      },
-      {
-        "type": "checkbox",
-        "id": "message",
-        "label": "Show announcement",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "home_page_only",
-        "label": "Home page only",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "message_text",
-        "label": "Announcement text",
-        "default": "Announce something here"
-      },
-      {
-        "type": "url",
-        "id": "message_link",
-        "label": "Announcement link",
-        "info": "Optional"
-      },
-      {
-        "type": "color",
-        "id": "color_bg",
-        "label": "Bar",
-        "default": "#7796a8"
-      },
-      {
-        "type": "color",
-        "id": "color_text",
-        "label": "Text",
-        "default": "#fff"
+        "type": "link_list",
+        "id": "secondary_linklist",
+        "label": "Secondary Menu"
       }
     ]
   }

@@ -9,7 +9,7 @@
     },
     "404": {
       "title": "404 Página no encontrada",
-      "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"/collections/all\">aquí</a> para continuar la compra."
+      "subtext_html": "La página que ha solicitado no existe. Haga clic <a href=\"\/collections\/all\">aquí<\/a> para continuar la compra."
     },
     "password_page": {
       "opening_soon": "Apertura Próximamente",
@@ -23,7 +23,7 @@
       "signup_form_email_placeholder": "Tu dirección de correo electrónico",
       "signup_form_submit": "Enviar",
       "signup_form_success": "¡Te enviaremos un correo electrónico antes de inaugurar!",
-      "admin_link_html": "¿Eres el dueño de la tienda? <a href=\"/admin\">Regístrate aquí</a>",
+      "admin_link_html": "¿Eres el dueño de la tienda? <a href=\"\/admin\">Regístrate aquí<\/a>",
       "password_link": "Entrar usando contraseña",
       "powered_by_shopify_html": "Esta tienda estará impulsada por {{ shopify }}"
     },
@@ -80,7 +80,7 @@
       "checkout": "Finalizar pedido",
       "empty": "Su carrito actualmente está vacío.",
       "cookies_required": "Habilite las cookies para usar el carrito de compras",
-      "continue_browsing_html": "Continúe explorando <a href=\"/collections/all\">aquí</a>.",
+      "continue_browsing_html": "Continúe explorando <a href=\"\/collections\/all\">aquí<\/a>.",
       "item_quantity": "Cantidad de artículo",
       "savings": "Está ahorrando"
     },
@@ -270,7 +270,7 @@
       "initial_value": "Valor de la tarjeta de regalo: {{ value }}"
     }
   },
-  "date_formats":{
+  "date_formats": {
     "month_day_year": "%d de %B, %Y"
   }
 }

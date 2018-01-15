@@ -16,7 +16,8 @@ module.exports = {
       {
         test: /bootstrap\.scss/,
         use: bootstrapFile.extract({
-          use: ['raw-loader', {loader: './rawSassLoader.js'}]
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
         })
       },
       {
@@ -35,5 +36,6 @@ module.exports = {
   output: {
       path: __dirname + '/assets',
       filename: "[name].js.liquid"
-  }
+  },
+  stats: "minimal"
 };

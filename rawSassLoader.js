@@ -37,7 +37,7 @@ module.exports = function(source) {
 
   for (var i = 0; i < initImportArray.length; i++) {
     var importFileContent = fs.readFileSync(path.resolve(directory + '/' + initImportArray[i]), 'utf8');
-    returnScss += importFileContent;
+    returnScss = importFileContent + '\n' + returnScss;
   }
   return(returnScss);
 }

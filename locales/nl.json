@@ -9,7 +9,7 @@
     },
     "404": {
       "title": "404 Pagina niet gevonden",
-      "subtext_html": "De pagina die u zocht bestaat niet. Klik <a href=\"/collections/all\">hier</a> om verder te shoppen."
+      "subtext_html": "De pagina die u zocht bestaat niet. Klik <a href=\"\/collections\/all\">hier<\/a> om verder te shoppen."
     },
     "password_page": {
       "opening_soon": "Binnenkort open",
@@ -23,7 +23,7 @@
       "signup_form_email_placeholder": "Uw e-mail",
       "signup_form_submit": "Bevestig",
       "signup_form_success": "We zullen u een e-mail sturen net voor we open gaan!",
-      "admin_link_html": "Ben u de eigenaar van deze shop? <a href=\"/admin\">hier inloggen</a>",
+      "admin_link_html": "Ben u de eigenaar van deze shop? <a href=\"\/admin\">hier inloggen<\/a>",
       "password_link": "Login met wachtwoord",
       "powered_by_shopify_html": "Deze shop zal worden ondersteund door {{ shopify }}"
     },
@@ -80,7 +80,7 @@
       "checkout": "Plaats bestelling",
       "empty": "Uw winkelmandje is momenteel leeg.",
       "cookies_required": "Gelieve cookies te activeren om het winkelmandje te gebruiken",
-      "continue_browsing_html": "Bekijk <a href=\"/collections/all\">alle producten</a>.",
+      "continue_browsing_html": "Bekijk <a href=\"\/collections\/all\">alle producten<\/a>.",
       "item_quantity": "Hoeveelheid",
       "savings": "U bespaart"
     },
@@ -270,7 +270,7 @@
       "initial_value": "Waarde cadeaukaart: {{ value }}"
     }
   },
-  "date_formats":{
+  "date_formats": {
     "month_day_year": "%d %B %Y"
   }
 }
