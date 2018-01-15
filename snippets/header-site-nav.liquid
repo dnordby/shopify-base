@@ -14,9 +14,8 @@
 
     {%- if linklists[child_list_handle].links != blank -%}
       <li class="nav-item dropdown{% if link.active %} active{% endif %}" aria-has-popup="true">
-        <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+        <a href="#" class="nav-link dropdown-toggle" id="secondaryNavigation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ link.title }}</a>
 
-        <div class="site-nav__dropdown" aria-expanded="false">
           {% if three_level_nav %}
             <div class="site-nav__childlist">
               <div class="site-nav__childlist-grid">
@@ -38,15 +37,14 @@
               </div>
             </div>
           {% else %}
-            <ul>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               {% for childlink in linklists[child_list_handle].links %}
-                <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                <li class="dropdown-item {% if childlink.active %}site-nav--active{% endif %}">
                   <a href="{{ childlink.url }}" class="nav-link">{{ childlink.title | escape }}</a>
                 </li>
               {% endfor %}
             </ul>
           {% endif %}
-        </div>
       </li>
     {% else %}
       <li class="nav-item{% if link.active %} active{% endif %}">
@@ -55,3 +53,9 @@
     {% endif %}
   {% endfor %}
 </ul>
+
+
+{% comment %} DISPLAY SEARCH/ACCOUNT/CART IF SECONDARY BAR IS DISABLED, OR SECONDARY MENU IS ACTIVE {% endcomment %}
+{% if search_cart_account %}
+  {% include 'header-search-account-cart' %}
+{% endif %}

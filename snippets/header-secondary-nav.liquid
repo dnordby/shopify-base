@@ -1,0 +1,21 @@
+{%- if section.settings.secondary_enable -%}
+  <div class="row secodary-header">
+    {%- if section.settings.secondary_linklist != blank -%}
+      <nav class="col secondary-nav">
+        <ul class="nav justify-content-end">
+          {%- for link in linklists[section.settings.secondary_linklist].links -%}
+            <li class="nav-item">
+              <a href="{{ link.url }}" class="nav-link{%- if link.active -%} active{%- endif -%}">{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- else -%}
+      <div class="col">
+        <div class="search-account-cart-wrapper">
+          {% include 'header-search-account-cart' %}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

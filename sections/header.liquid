@@ -1,68 +1,26 @@
-{%- if section.settings.announcement_enable -%}
-  {%- assign enable_announcement = true -%}
-{%- endif -%}
-{%- if section.settings.announcement_link -%}
-  {%- assign has_announcement_link = true -%}
-  {%- assign announcement_link = section.settings.announcement_link -%}
-{%- endif -%}
-{%- if section.settings.announcement_text != blank -%}
-  {%- assign has_announcement_text = true -%}
-  {%- assign announcement_text = section.settings.announcement_text -%}
-{%- endif -%}
+{% include 'header-announcement-bar' %}
 
+{% include 'header-secondary-nav' %}
 
-
-{% comment %} ANNOUNCEMENT BAR {% endcomment %}
-{% if enable_announcement and has_announcement_text %}
-  <div class="row announcement-bar">
-    {% if has_announcement_link %}
-      <a href="{{ announcement_link }}">
-    {% endif %}
-        <div class="col">
-          <p>{{ announcement_text }}</p>
-        </div>
-    {% if has_announcement_link %}
-      </a>
-    {% endif %}
-  </div>
-{% endif %}
-
-<header data-section-id="{{ section.id }}" data-section-type="header-section" class="row">
-  <nav class="navbar navbar-toggleable-md">
+<header data-section-id="{{ section.id }}" data-section-type="header-section" class="row primary-header">
+  <nav class="col navbar navbar-toggleable-md navbar-light primary-nav">
     <div class="navbar-brand">
-      <a href="{{ shop.url }}">{{ shop.name }}</a>
+      {%- if section.settings.logo != blank -%}
+        <a href="{{ shop.url }}"><img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ shop.name }}"></a>
+      {%- else -%}
+        <a href="{{ shop.url }}">{{ shop.name }}</a>
+      {%- endif -%}
     </div>
     
-    <div class="collapse navbar-collapse">
-      {% include 'site-nav' %}
-      
-      <form action="/search" method="get" role="search" class="form-inline">
-        <input type="search" name="q" id="Search" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="form-control">
-        <button type="submit" class="btn btn-outline-success">
-          {% include 'icon-search' %}
-        </button>
-      </form>
+    <div class="collapse navbar-collapse" id="primaryNavigation">
+      {%- if section.settings.secondary_linklist != blank or section.settings.secondary_enable == false -%}
+        {% include 'header-site-nav', search_cart_account: true %}
+      {%- else -%}
+        {% include 'header-site-nav' %}
+      {%- endif -%}
     </div>
 
-    {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        <a href="/account" class="icon-link">{% include 'icon-login' %}</a>
-      {% else %}
-        <a href="/account/login" class="icon-link">{% include 'icon-login' %}</a>
-      {% endif %}
-    {% endif %}
-
-    <a href="/cart" class="icon-link">
-      {% include 'icon-cart' %}
-      {% if cart.item_count > 0 %}
-        <div id="CartCount" class="site-header__cart-count">
-          <span>{{ cart.item_count }}</span>
-          <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-        </div>
-      {% endif %}
-    </a>
-
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#primaryNavigation" aria-controls="primaryNavigation" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   </nav>
@@ -73,6 +31,10 @@
     "name": "Header",
     "class": "site-nav-wrapper",
     "settings": [
+      {
+        "type": "header",
+        "content": "Announcement Bar"
+      },
       {
         "type": "checkbox",
         "id": "announcement_enable",
@@ -90,6 +52,10 @@
         "label": "Announcement bar link"
       },
       {
+        "type": "header",
+        "content": "Main header bar"
+      },
+      {
         "type": "image_picker",
         "id": "logo",
         "label": "Logo image"
@@ -101,9 +67,16 @@
         "default": "main-menu"
       },
       {
+        "type": "checkbox",
+        "id": "secondary_enable",
+        "label": "Enable secondary nav",
+        "default": false
+      },
+      {
         "type": "link_list",
         "id": "secondary_linklist",
-        "label": "Secondary Menu"
+        "label": "Secondary Menu",
+        "default": "main-menu"
       }
     ]
   }

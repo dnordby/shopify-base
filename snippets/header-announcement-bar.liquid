@@ -1,0 +1,14 @@
+{% comment %} ANNOUNCEMENT BAR {% endcomment %}
+{% if section.settings.announcement_enable and section.settings.announcement_text != blank %}
+  <div class="row announcement-bar">
+    {% if section.settings.announcement_link %}
+      <a href="{{ section.settings.announcement_link }}">
+    {% endif %}
+        <div class="col">
+          <p>{{ section.settings.announcement_text }}</p>
+        </div>
+    {% if section.settings.announcement_link %}
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

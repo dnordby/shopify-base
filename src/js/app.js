@@ -2,8 +2,8 @@ import bootstrapSass from "./../scss/bootstrap/bootstrap.scss";
 import appSass from "./../scss/app.scss";
 
 import $ from 'jquery';
-import AjaxCart from '../js/modules/cart';
-import product from '../js/pages/product';
+import AjaxCart from './modules/cart';
+import product from './pages/product';
 
 const CartJs = {
   settings: {},
