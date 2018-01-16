@@ -1,11 +1,13 @@
+const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 let bootstrapFile = new ExtractTextPlugin('bootstrap.scss.liquid');
 let scssFile = new ExtractTextPlugin('style.scss.liquid');
 
 module.exports = {
+  context: path.resolve(__dirname, 'src'),
   entry: {
-    app: "./src/js/app.js"
+    app: "./js/app.js"
   },
   plugins: [
     bootstrapFile,
@@ -23,7 +25,7 @@ module.exports = {
       {
         test: /app\.scss$/,
         use: scssFile.extract({
-          use: ['raw-loader', {loader: './rawSassLoader.js'}]
+          use: ['raw-loader', {loader: path.resolve(__dirname, 'rawSassLoader.js')}]
         })
       },
       {

@@ -1,43 +1,56 @@
-module.exports = function(source) {
+module.exports = function(source, map) {
+  if(this.cacheable) this.cacheable();
+
   const path = require('path');
   const fs = require('fs');
   const exec = require('child_process').exec;
+  const directory = this.context;
 
-  var directory = this.context;
   var imports = [];
   var returnScss = '';
+  var $this = this;
+
+  function getAllFiles(directory) {
+    var results = [];
+
+    fs.readdirSync(directory).forEach(function(file) {
+        file = directory+'/'+file;
+        var stat = fs.statSync(file);
+        if (stat && stat.isDirectory()) {
+            results = results.concat(getAllFiles(file))
+        } else results.push(file);
+    });
+    
+    for (var i = results.length - 1; i >= 0; i--) {
+      if (typeof results[i] !== "undefined") {
+        $this.addDependency(results[i]);
+      }
+    }
+  };
 
   function getImports(file) {
     var line = file.split(/\n/g);
     for (var i = line.length - 1; i >= 0; i--) {
       if (line[i].startsWith("@import")) {
-        imports.push(line[i]);
+        var cleanLine = line[i].replace('@import ', '').replace(/(\"|\')/gi, '').replace(/\;/gi, '');
+        var importFileContent = fs.readFileSync(path.resolve(directory + '/' + cleanLine));
+        returnScss = importFileContent + '\n' + returnScss;
       }
     }
-    return cleanArray(imports);
-  }
 
-  function cleanArray(imports) {
-    for (var i = 0; i < imports.length; i++) {
-      if (imports[i] == '') {
-        imports.splice(i, 1);
-        i--;
-      } else {
-        imports[i] = imports[i].replace('@import ', '').replace(/(\"|\')/gi, '').replace(/\;/gi, '');
-      }
+    if ( returnScss.includes('@import ') ) {
+      getImports(returnScss);
+    } else {
+      return;
     }
-    return imports;
   }
 
-  // LINT IMPORTS FILE
-  if (source.includes('@import ')) {
-    var initImportArray = getImports(source);
-  }
+  // ADD ALL /src DIRECTORY FILES AS DEPENDENCIES FOR webpack --watch TO WORK
+  getAllFiles(directory);
 
+  // IMPORT FILES PRESENT IN SOURCE
+  getImports(source);
 
-  for (var i = 0; i < initImportArray.length; i++) {
-    var importFileContent = fs.readFileSync(path.resolve(directory + '/' + initImportArray[i]), 'utf8');
-    returnScss = importFileContent + '\n' + returnScss;
-  }
-  return(returnScss);
+  // RETURN FOR NEXT LOADER TO PROCESS
+  return returnScss;
 }
