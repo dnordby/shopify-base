@@ -1,9 +1,57 @@
-{% include 'header-announcement-bar' %}
+{% comment %} LIQUID VARIABLES {% endcomment %}
+{%- if section.settings.secondary_linklist != blank or section.settings.secondary_enable == false -%}
+  {%- assign search_cart_account = true -%}
+{%- else -%}
+  {%- assign search_cart_account = false -%}
+{%- endif -%}
 
-{% include 'header-secondary-nav' %}
 
-<header data-section-id="{{ section.id }}" data-section-type="header-section" class="row primary-header">
-  <nav class="col navbar navbar-toggleable-md navbar-light primary-nav">
+
+{% comment %} ANNOUNCEMENT BAR {% endcomment %}
+{% if section.settings.announcement_enable and section.settings.announcement_text != blank %}
+  <div class="row announcement-bar">
+    {% if section.settings.announcement_link %}
+      <a href="{{ section.settings.announcement_link }}" class="col">
+    {% else %}
+      <div class="col">
+    {% endif %}
+
+      <p>{{ section.settings.announcement_text }}</p>
+
+    {% if section.settings.announcement_link %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+
+
+{% comment %} SECONDARTY NAVIGATION BAR {% endcomment %}
+{%- if section.settings.secondary_enable -%}
+  <div class="row">
+    {%- if section.settings.secondary_linklist != blank -%}
+      <nav class="col">
+        <ul class="nav justify-content-end">
+          {%- for link in linklists[section.settings.secondary_linklist].links -%}
+            <li class="nav-item">
+              <a href="{{ link.url }}" class="nav-link{%- if link.active -%} active{%- endif -%}">{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- else -%}
+      {% include 'header-search-account-cart' %}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+
+
+{% comment %} PRIMARY NAVIGATION BAR {% endcomment %}
+<header class="row">
+  <nav class="col navbar navbar-toggleable-md">
     <div class="navbar-brand">
       {%- if section.settings.logo != blank -%}
         <a href="{{ shop.url }}"><img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ shop.name }}"></a>
@@ -11,13 +59,9 @@
         <a href="{{ shop.url }}">{{ shop.name }}</a>
       {%- endif -%}
     </div>
-    
-    <div class="collapse navbar-collapse" id="primaryNavigation">
-      {%- if section.settings.secondary_linklist != blank or section.settings.secondary_enable == false -%}
-        {% include 'header-site-nav', search_cart_account: true %}
-      {%- else -%}
-        {% include 'header-site-nav' %}
-      {%- endif -%}
+
+    <div class="collapse navbar-collapse{% unless search_cart_account %} justify-content-end{% endunless %}">
+      {% include 'header-site-nav' %}
     </div>
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#primaryNavigation" aria-controls="primaryNavigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +69,7 @@
     </button>
   </nav>
 </header>
+
 
 {% schema %}
   {
@@ -53,18 +98,7 @@
       },
       {
         "type": "header",
-        "content": "Main header bar"
-      },
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo image"
-      },
-      {
-        "type": "link_list",
-        "id": "main_linklist",
-        "label": "Main Menu",
-        "default": "main-menu"
+        "content": "Secondary Menu Bar"
       },
       {
         "type": "checkbox",
@@ -76,6 +110,21 @@
         "type": "link_list",
         "id": "secondary_linklist",
         "label": "Secondary Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "header",
+        "content": "Primary Menu"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Main Menu",
         "default": "main-menu"
       }
     ]

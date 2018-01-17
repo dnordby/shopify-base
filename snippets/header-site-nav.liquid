@@ -17,25 +17,19 @@
         <a href="#" class="nav-link dropdown-toggle" id="secondaryNavigation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ link.title }}</a>
 
           {% if three_level_nav %}
-            <div class="site-nav__childlist">
-              <div class="site-nav__childlist-grid">
-                {% if linklists[child_list_handle].links != blank %}
-                  {% for childlink in linklists[child_list_handle].links %}
-                    {% assign grand_child_list_handle = childlink.title | handle %}
-                    <div class="site-nav__childlist-item">
-                      <a href="{{ childlink.url }}" class="nav-link">{{ childlink.title | escape }}</a>
-                      {% for grandchildlink in linklists[grand_child_list_handle].links %}
-                        <ul>
-                          <li class="nav-item{% if link.active %} active{% endif %}">
-                            <a href="{{ grandchildlink.url }}" class="nav-link">{{ grandchildlink.title | escape }}</a>
-                          </li>
-                        </ul>
-                      {% endfor %}
-                    </div>
-                  {% endfor %}
-                {% endif %}
-              </div>
-            </div>
+            {% if linklists[child_list_handle].links != blank %}
+              {% for childlink in linklists[child_list_handle].links %}
+                {% assign grand_child_list_handle = childlink.title | handle %}
+                <a href="{{ childlink.url }}" class="nav-link">{{ childlink.title | escape }}</a>
+                {% for grandchildlink in linklists[grand_child_list_handle].links %}
+                  <ul>
+                    <li class="nav-item{% if link.active %} active{% endif %}">
+                      <a href="{{ grandchildlink.url }}" class="nav-link">{{ grandchildlink.title | escape }}</a>
+                    </li>
+                  </ul>
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
           {% else %}
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               {% for childlink in linklists[child_list_handle].links %}

@@ -1,73 +1,116 @@
-<footer class="container-fluid">
+{%- assign footer_linklist_one = section.settings.footer_linklist_one -%}
+{%- assign footer_linklist_two = section.settings.footer_linklist_two -%}
+{%- assign footer_linklist_three = section.settings.footer_linklist_three -%}
+{%- assign valid_lists = 0 -%}
+{% for block in section.blocks %}
+  {% if block.type == 'linklist' %}
+    {% if linklists[block.settings.list].links.size > 0 %}
+      {% assign valid_lists = valid_lists | plus: 1 %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% assign valid_lists = valid_lists | plus: 1 %}
+{% assign valid_lists = 12 | divided_by: valid_lists %}
 
-  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-  <ul>
-    {% for social in social_accounts %}
-      {%- assign social_handle = social | handleize -%}
-      {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
-      {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
-
-      {% if settings[social_link] != blank %}
-        <li>
-          <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-            {% include social_icon %}
-            <span class="icon-fallback-text">{{ social }}</span>
-          </a>
-        </li>
+<footer class="site-footer">
+  <div class="row">
+    {% comment %} NAVIGATION MENUS {% endcomment %}
+    {% for block in section.blocks %}
+      {% if block.type == 'linklist' %}
+        {% if linklists[block.settings.list].links.size > 0 %}
+          <ul class="col-12 col-md-{{ valid_lists }}">
+            <li><strong>{{ linklists[block.settings.list].title }}</strong></li>
+            {% for link in linklists[block.settings.list].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       {% endif %}
-
     {% endfor %}
-  </ul>
 
-  {% if section.settings.show_payment_icons %}
-    {% unless shop.enabled_payment_types == empty %}
-      {%- assign payment_icons_available = 'amazon_payments,american_express,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,maestro,master,paypal,visa' | split: ',' -%}
+    {% comment %} TOGGLEABLE SIGNUP FORM {% endcomment %}
+    {%- if section.settings.enable_signup -%}
+      <form action="/" class="col-12 col-md-{{ valid_lists }}">
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Sign Up</button>
+          </div>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
 
-      <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
-      <ul class="payment-icons">
-        {% for type in shop.enabled_payment_types %}
-          {% if payment_icons_available contains type %}
-            <li>
-              {%- assign icon_name = type | prepend: 'icon-' -%}
-              {% include icon_name %}
-              <span class="visually-hidden">{{ type | capitalize | replace: '_', ' ' }}</span>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endunless %}
-  {% endif %}
+  <div class="row">
+    {%- if section.settings.enable_social -%}
+      {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+      <div class="col-12 col-md-6">
+        {%- for social in social_accounts -%}
+          {%- assign social_handle = social | handleize -%}
+          {%- capture social_link -%}social_{{ social_handle }}_link{%- endcapture -%}
+          {%- if settings[social_link] != blank -%}
+            <a href="{{ settings[social_link] }}" title="{{ shop.name }}: {{- social -}}"><small>{{- social -}}</small></a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
 
-  {%- assign footer_linklist = section.settings.footer_linklist -%}
-  {% if linklists[footer_linklist].links.size > 0 %}
-    <ul>
-      {% for link in linklists[footer_linklist].links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  <div>
-    <small>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}. {{ powered_by_link }}</small>
+    <div class="col-12 col-md-6">
+      <small>&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: '/' }}, Website by <a href="https://lucid.nz">Lucid</a>, Powered by <a href="https://www.shopify.com/?ref=lucid-design">Shopify</a></small>
+    </div>
   </div>
 </footer>
+
+{% for block in section.blocks %}
+  {% if block.type == 'script' %}
+    {{ block.settings.footer_script }}
+  {% endif %}
+{% endfor %}
 
 {% schema %}
   {
     "name": "Footer",
-    "class": "container-fluid",
     "settings": [
       {
-        "type": "link_list",
-        "id": "footer_linklist",
-        "label": "First menu",
-        "default": "footer"
+        "type": "checkbox",
+        "id": "enable_signup",
+        "label": "Enable newsletter signup",
+        "default": true
       },
       {
         "type": "checkbox",
-        "id": "show_payment_icons",
-        "label": "Show payment icons",
+        "id": "enable_social",
+        "label": "Enable social links",
         "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "linklist",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "list",
+            "label": "Select list"
+          }
+        ]
+      },
+      {
+        "type": "script",
+        "name": "Script",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Script Name"
+          },
+          {
+            "type": "textarea",
+            "id": "footer_script",
+            "label": "Script"
+          }
+        ]
       }
     ]
   }

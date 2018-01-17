@@ -26,115 +26,38 @@ $brand-info:                $teal !default;
 $brand-warning:             $orange !default;
 $brand-danger:              $red !default;
 $brand-inverse:             $gray-dark !default;
+// GLOBAL SETTINGS
 * {
   outline: 0;
   &:active, &:focus, &:hover {
     outline: 0;
   }
 }
-
-body {
-  background-color: $white;
-}
-
-.form-inline {
-  input, button {
-    border: none;
-  }
-}
-.nav-icon-link {
-  display: flex;
-  svg {
-    fill: $white;
-    height: 2.25em;
-    padding: 0.5em;
-    width: auto;
-    path {
-      fill: $white;
-    }
-  }
-}
-
-.search-account-cart-wrapper {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  .form-inline {
-    button {
-      padding: 0;
-      svg {
-        fill: $white;
-        height: 2.25em;
-        padding: 0.5em;
-        path {
-          fill: $white;
-        }
-      }
-    }
-  }
-  &.dark {
-    .form-inline {
-      button {
-        padding: 0;
-        svg {
-          fill: $brand-inverse;
-          path {
-            fill: $brand-inverse;
-          }
-        }
-      }
-    }
-    .nav-icon-link {
-      display: flex;
-      svg {
-        fill: $brand-inverse;
-        height: 2.25em;
-        padding: 0.5em;
-        width: auto;
-        path {
-          fill: $brand-inverse;
-        }
-      }
-    }
-  }
-}
-
 .announcement-bar {
-  background-color: $brand-primary;
-  > a, p {
-    color: $white;
-    display: block;
-    text-align: center;
-    width: 100%;
-  }
   p {
     margin: 0;
-    padding: 0.5rem 0;
+    text-align: center;
   }
 }
 
-.secodary-header {
-  background-color: $brand-inverse;
-  text-align: right;
-  .secondary-nav {
-    .nav {
-      .nav-item {
-        .nav-link {
-          color: $white;
-        }
-      }
-    }
+.navbar-brand {
+  img {
+    height: 3rem;
   }
 }
-
-.primary-header {
-  .primary-nav {
-    .navbar-brand {
-      a {
-        img {
-          height: 3rem;
-        }
-      }
+.site-footer {
+  .col-12 {
+    align-items: flex-start;
+  }
+  ul {
+    list-style: none;
+    margin-bottom: 0;
+  }
+  .form-inline {
+    flex-wrap: nowrap;
+    input {
+      flex-grow: 1;
+      width: inherit;
     }
   }
 }

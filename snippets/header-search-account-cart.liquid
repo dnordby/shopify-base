@@ -1,25 +1,25 @@
-<form action="/search" method="get" role="search" class="form-inline">
-  <input type="search" name="q" id="Search" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="form-control">
-  <button type="submit" class="btn btn-outline-success">
-    {% include 'icon-search' %}
-  </button>
+<form action="/search" method="get" role="search" class="col-auto ml-auto form-inline">
+  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" class="form-control">
+  <button type="submit" class="btn btn-secondary">Submit</button>
 </form>
 
-{% if shop.customer_accounts_enabled %}
-  {% if customer %}
-    <a href="/account" class="nav-icon-link">{% include 'icon-login' %}</a>
-  {% else %}
-    <a href="/account/login" class="nav-icon-link">{% include 'icon-login' %}</a>
-  {% endif %}
-{% endif %}
+<ul class="nav col-auto">
+  <li class="nav-item">
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <a href="/account" class="nav-link">Account</a>
+      {% else %}
+        <a href="/account/login" class="nav-link">Login</a>
+      {% endif %}
+    {% endif %}
+  </li>
 
-
-<a href="/cart" class="nav-icon-link">
-  {% include 'icon-cart' %}
-  {%- if cart.item_count > 0 -%}
-    <div id="CartCount" class="site-header__cart-count">
-      <span>{{ cart.item_count }}</span>
-      <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-    </div>
-  {%- endif -%}
-</a>
+  <li class="nav-item">
+    <a href="/cart" class="nav-link">
+      Cart
+      {%- if cart.item_count > 0 -%}
+        <div class="badge">{{ cart.item_count }}</div>
+      {%- endif -%}
+    </a>
+  </li>
+</ul>

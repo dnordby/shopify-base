@@ -31,5 +31,50 @@
         "info": "Will be scaled down to 32 x 32px"
       }
     ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest_link",
+        "label": "Pinterest account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_snapchat_link",
+        "label": "Snapchat account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tumblr_link",
+        "label": "Tumblr account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_vimeo_link",
+        "label": "Vimeo account URL"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube account URL"
+      }
+    ]
   }
 ]

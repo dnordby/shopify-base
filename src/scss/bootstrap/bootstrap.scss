@@ -1,97 +1,42 @@
-/* Core variables and mixins */
-@import "_variables.scss";
-// Utilities
-@import "mixins/_misc.scss";
-@import "mixins/_breakpoints.scss";
-@import "mixins/_hover.scss";
-@import "mixins/_image.scss";
-@import "mixins/_badge.scss";
-@import "mixins/_resize.scss";
-@import "mixins/_screen-reader.scss";
-@import "mixins/_size.scss";
-@import "mixins/_reset-text.scss";
-@import "mixins/_text-emphasis.scss";
-@import "mixins/_text-hide.scss";
-@import "mixins/_text-truncate.scss";
-@import "mixins/_transforms.scss";
-@import "mixins/_visibility.scss";
+/*!
+ * Bootstrap v4.0.0-beta.3 (https://getbootstrap.com)
+ * Copyright 2011-2017 The Bootstrap Authors
+ * Copyright 2011-2017 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
 
-// Components
-@import "mixins/_alert.scss";
-@import "mixins/_buttons.scss";
-@import "mixins/_cards.scss";
-@import "mixins/_pagination.scss";
-@import "mixins/_lists.scss";
-@import "mixins/_list-group.scss";
-@import "mixins/_nav-divider.scss";
-@import "mixins/_forms.scss";
-@import "mixins/_table-row.scss";
-
-// Skins
-@import "mixins/_background-variant.scss";
-@import "mixins/_border-radius.scss";
-@import "mixins/_gradients.scss";
-
-// Layout
-@import "mixins/_clearfix.scss";
-@import "mixins/_grid-framework.scss";
-@import "mixins/_grid.scss";
-@import "mixins/_float.scss";
-@import "_custom.scss";
-@import "mixins/_clearfix.scss";
-@import "mixins/_breakpoints.scss";
-@import "mixins/_grid-framework.scss";
-@import "mixins/_grid.scss";
-
-/* Reset and dependencies */
-@import "_normalize.scss";
-@import "_print.scss";
-@import "_reboot.scss";
-@import "_type.scss";
-@import "_images.scss";
-@import "_code.scss";
-@import "_grid.scss";
-@import "_tables.scss";
-@import "_forms.scss";
-@import "_buttons.scss";
-
-/* Components */
-@import "_transitions.scss";
-@import "_dropdown.scss";
-@import "_button-group.scss";
-@import "_input-group.scss";
-@import "_custom-forms.scss";
-@import "_nav.scss";
-@import "_navbar.scss";
-@import "_card.scss";
-@import "_breadcrumb.scss";
-@import "_pagination.scss";
-@import "_badge.scss";
-@import "_jumbotron.scss";
-@import "_alert.scss";
-@import "_progress.scss";
-@import "_media.scss";
-@import "_list-group.scss";
-@import "_responsive-embed.scss";
-@import "_close.scss";
-
-/* Components w/ JavaScript */
-@import "_modal.scss";
-@import "_tooltip.scss";
-@import "_popover.scss";
-@import "_carousel.scss";
-
-/* Utility classes */
-@import "utilities/_align.scss";
-@import "utilities/_background.scss";
-@import "utilities/_borders.scss";
-@import "utilities/_clearfix.scss";
-@import "utilities/_display.scss";
-@import "utilities/_flex.scss";
-@import "utilities/_float.scss";
-@import "utilities/_position.scss";
-@import "utilities/_screenreaders.scss";
-@import "utilities/_sizing.scss";
-@import "utilities/_spacing.scss";
-@import "utilities/_text.scss";
-@import "utilities/_visibility.scss";
+@import "functions";
+@import "variables";
+@import "mixins";
+@import "root";
+@import "reboot";
+@import "type";
+@import "images";
+@import "code";
+@import "grid";
+@import "tables";
+@import "forms";
+@import "buttons";
+@import "transitions";
+@import "dropdown";
+@import "button-group";
+@import "input-group";
+@import "custom-forms";
+@import "nav";
+@import "navbar";
+@import "card";
+@import "breadcrumb";
+@import "pagination";
+@import "badge";
+@import "jumbotron";
+@import "alert";
+@import "progress";
+@import "media";
+@import "list-group";
+@import "close";
+@import "modal";
+@import "tooltip";
+@import "popover";
+@import "carousel";
+@import "utilities";
+@import "print";
