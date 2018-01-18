@@ -1,0 +1,170 @@
+<section class="section-{{ section.settings.section_width }}">
+  <div class="row content-{{ section.settings.content_width }}">
+    {% for block in section.blocks %}
+        {% case block.type %}
+          {% when "text_column" %}
+            {% include 'block-text-column' %}
+        {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .row {
+    background-color: {{ section.settings.background_color }};
+    margin-top: {{ section.settings.margin_top }}rem;
+    padding-bottom: {{ section.settings.padding_top_bottom }}rem;
+    padding-top: {{ section.settings.padding_top_bottom }}rem;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Content Block",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "section_width",
+        "label": "Section width options",
+        "options": [
+          { "value": "full-width", "label": "Full width" },
+          { "value": "page-width", "label": "Fixed width (1400px)" }
+        ],
+        "default": "full-width"
+      },
+      {
+        "type": "radio",
+        "id": "content_width",
+        "label": "Content width options",
+        "options": [
+          { "value": "full-width", "label": "Full width" },
+          { "value": "page-width", "label": "Fixed width (1400px)" }
+        ],
+        "default": "full-width"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_bottom",
+        "label": "Section top/bottom padding",
+        "min": 0,
+        "max": 10,
+        "unit": "rem",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "label": "Section top margin",
+        "min": 0,
+        "max": 10,
+        "unit": "rem",
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Section background color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text_column",
+        "name": "Text column (w/ image)",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Text Settings"
+          },
+          {
+            "type": "text",
+            "id": "header",
+            "label": "Header"
+          },
+          {
+            "type": "text",
+            "id": "subheader",
+            "label": "Subheader"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "is_quote",
+            "label": "Quote",
+            "default": false
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color"
+          },
+          {
+            "type": "header",
+            "content": "CTA Settings"
+          },
+          {
+            "type": "url",
+            "id": "cta_link",
+            "label": "CTA link"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "CTA text"
+          },
+          {
+            "type": "checkbox",
+            "id": "cta_is_button",
+            "label": "CTA button",
+            "default": true,
+            "info": "If unchecked, will be inline at end of text"
+          },
+          {
+            "type": "header",
+            "content": "Image Settings"
+          },
+          {
+            "type": "image_picker",
+            "id": "column_image",
+            "label": "Image (optional)"
+          },
+          {
+            "type": "radio",
+            "id": "image_function",
+            "options": [
+              { "value": "feature", "label": "Feature image" },
+              { "value": "background", "label": "Background image" }
+            ],
+            "label": "Image placement",
+            "default": "feature"
+          },
+          {
+            "type": "color",
+            "id": "image_overlay",
+            "label": "Image overlay color",
+            "info": "None, if unassigned"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "label": "Overlay opacity",
+            "info": "Overlay color must be assigned to use",
+            "min": 0,
+            "max": 1,
+            "default": 0.6,
+            "step": 0.1
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Content Block",
+        "category": "General"
+      }
+    ]
+  }
+{% endschema %}

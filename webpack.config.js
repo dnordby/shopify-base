@@ -19,7 +19,7 @@ module.exports = {
         test: /bootstrap\.scss/,
         use: bootstrapFile.extract({
           fallback: 'style-loader',
-          use: [{loader: 'css-loader', options: {importLoaders: 1}}, 'postcss-loader', 'sass-loader']
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
       },
       {

@@ -1,0 +1,99 @@
+<div class="col {{ block.type }} block-{{ block.id }}">
+  {% if block.settings.column_image and block.settings.image_function == 'feature' %}
+    <div class="image-wrapper">
+      {% if block.settings.image_overlay %}
+        <div class="image-overlay"></div>
+      {% endif %}
+      <img src="{{ block.settings.column_image | img_url: 'master' }}">
+    </div>
+  {% endif %}
+
+  {% if block.settings.column_image and block.settings.image_function == 'background' %}
+    <div class="image-wrapper">
+      <div class="image-overlay"></div>
+    </div>
+  {% endif %}
+
+  <div class="text-wrapper">
+    {%- if block.settings.header -%}
+      <h1>{{ block.settings.header }}</h1>
+    {%- endif -%}
+
+    {%- if block.settings.subheader -%}
+      <h3>{{ block.settings.subheader }}</h3>
+    {%- endif -%}
+
+    {%- if block.settings.text -%}
+      {% comment %} BEGIN OPTIONAL BLOCKQUOTE {% endcomment %}
+      {%- if block.settings.is_quote -%}
+        <blockquote class="blockquote">
+      {%- endif -%}
+
+      {% comment %} TEXT {% endcomment %}
+      {{- block.settings.text -}}
+      
+      {% comment %} INLINE CALL TO ACTION {% endcomment %}
+      {%- unless block.settings.cta_is_button -%}
+        {%- if block.settings.cta_link and block.settings.cta_text -%}
+          <a href="{{ block.settings.cta_link }}">{{ block.settings.cta_text }}</a>
+        {%- endif -%}
+      {%- endunless -%}
+
+      {% comment %} END OPTIONAL BLOCKQUOTE {% endcomment %}
+      {%- if block.settings.is_quote -%}
+        </blockquote>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if block.settings.cta_is_button -%}
+      <a href="{{ block.settings.cta_link }}" class="btn btn-primary">{{ block.settings.cta_text }}</a>
+    {%- endif -%}
+  </div>
+
+  
+  <style>
+    .block-{{ block.id }} .text-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    {% if block.settings.image_overlay %}
+      .block-{{ block.id }} .image-wrapper {
+        position: relative;
+      }
+      .block-{{ block.id }} .image-overlay {
+        background-color: {{ block.settings.image_overlay }};
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: {{ block.settings.overlay_opacity }};
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    {% endif %}
+
+    {% if block.settings.column_image %}
+      .block-{{ block.id }} {
+        color: {{ block.settings.text_color  }};
+      }
+      {% if block.settings.image_function == 'background' %}
+        .block-{{ block.id }} {
+          background-image: url({{ block.settings.column_image | img_url: 'master' }});
+          background-position: 50%;
+          background-size: cover;
+        }
+        .block-{{ block.id }} .image-wrapper {
+          height: 100%;
+          position: absolute;
+          width: calc(100% - 30px);
+          z-index: 0;
+        }
+      {% else %}
+        .block-{{ block.id }} img {
+          max-width: 100%;
+        }
+      {% endif %}
+    {% endif %}
+  </style>
+</div>
