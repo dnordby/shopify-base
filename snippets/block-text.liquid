@@ -1,0 +1,29 @@
+{% if block.settings.column_image %}
+  <img src="{{ block.settings.column_image | img_url: 'master' }}">
+{% endif %}
+
+{% if block.settings.header %}
+  <h3>{{ block.settings.header }}</h3>
+{% endif %}
+
+{% if block.settings.lead %}
+  <p class="lead">{{ block.settings.lead }}</p>
+{% endif %}
+
+{% if block.settings.text %}
+  {{ block.settings.text }}
+{% endif %}
+
+{% if block.settings.cta_link and block.settings.cta_text != blank %}
+  <a href="{{ block.settings.cta_link }}" class="btn btn-secondary">{{ block.settings.cta_text }}</a>
+{% endif %}
+
+<style>
+  .block-{{ block.id }} {
+    color: {{ block.settings.text_color }};
+    text-align: {{ block.settings.horizontal_alignment }};
+  }
+  .block-{{ block.id }} img {
+    max-width: 100%;
+  }
+</style>

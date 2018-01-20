@@ -2,6 +2,14 @@
   "current": {
     "columns": 12,
     "favicon": "",
+    "social_facebook_link": "https:\/\/www.facebook.com\/lucidnz",
+    "social_instagram_link": "",
+    "social_pinterest_link": "",
+    "social_snapchat_link": "",
+    "social_tumblr_link": "",
+    "social_twitter_link": "https:\/\/twitter.com\/lucidnz",
+    "social_vimeo_link": "",
+    "social_youtube_link": "",
     "checkout_header_image": "",
     "checkout_logo_image": "",
     "checkout_logo_position": "left",
@@ -23,61 +31,315 @@
           "announcement_enable": true,
           "announcement_text": "This is a test",
           "announcement_link": "https:\/\/www.google.com",
+          "secondary_enable": false,
+          "secondary_linklist": "main-menu",
           "logo": "",
           "main_linklist": "main-menu"
         }
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "1516374691724": {
+            "type": "linklist",
+            "settings": {
+              "list": "footer"
+            }
+          },
+          "1516374705933": {
+            "type": "linklist",
+            "settings": {
+              "list": "footer"
+            }
+          },
+          "1516374716443": {
+            "type": "linklist",
+            "settings": {
+              "list": "footer"
+            }
+          }
+        },
+        "block_order": [
+          "1516374691724",
+          "1516374705933",
+          "1516374716443"
+        ],
         "settings": {
-          "footer_linklist": "footer",
-          "show_payment_icons": false
+          "enable_signup": true,
+          "enable_social": true
+        }
+      },
+      "1516395177838": {
+        "type": "content-section",
+        "blocks": {
+          "1516395373453": {
+            "type": "text_column",
+            "settings": {
+              "header": "Test Header",
+              "lead": "More info here.",
+              "text": "<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.<\/p>",
+              "text_color": "#ffffff",
+              "horizontal_alignment": "left",
+              "vertical_alignment": "start",
+              "cta_link": "shopify:\/\/pages\/page-test-1",
+              "cta_text": "Page 1",
+              "column_image": ""
+            }
+          },
+          "1516395425408": {
+            "type": "text_column",
+            "settings": {
+              "header": "Header Test",
+              "lead": "",
+              "text": "<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.<\/p>",
+              "text_color": "#ffffff",
+              "horizontal_alignment": "center",
+              "vertical_alignment": "center",
+              "cta_link": "",
+              "cta_text": "",
+              "column_image": "shopify:\/\/shop_images\/placeholder.png"
+            }
+          },
+          "1516395457715": {
+            "type": "text_column",
+            "settings": {
+              "header": "",
+              "lead": "",
+              "text": "<p>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.<\/p>",
+              "text_color": "#ffffff",
+              "horizontal_alignment": "right",
+              "vertical_alignment": "end",
+              "cta_link": "shopify:\/\/pages\/page-test-2",
+              "cta_text": "Page 2",
+              "column_image": ""
+            }
+          }
+        },
+        "block_order": [
+          "1516395373453",
+          "1516395425408",
+          "1516395457715"
+        ],
+        "settings": {
+          "section_width": "full-width",
+          "content_width": "full-width",
+          "padding_top_bottom": 2,
+          "margin_top": 0,
+          "background_color": "#000080"
+        }
+      },
+      "1516395291787": {
+        "type": "content-section",
+        "blocks": {
+          "1516395572498": {
+            "type": "article",
+            "settings": {
+              "article": "stories\/test-blog-post",
+              "text_color": "#000000",
+              "horizontal_alignment": "left",
+              "vertical_alignment": "center",
+              "cta_text": "read more"
+            }
+          },
+          "1516395606801": {
+            "type": "article",
+            "settings": {
+              "article": "stories\/test-blog-post",
+              "text_color": "#000000",
+              "horizontal_alignment": "left",
+              "vertical_alignment": "center",
+              "cta_text": "read less about this one"
+            }
+          }
+        },
+        "block_order": [
+          "1516395572498",
+          "1516395606801"
+        ],
+        "settings": {
+          "section_width": "full-width",
+          "content_width": "full-width",
+          "padding_top_bottom": 2,
+          "margin_top": 0,
+          "background_color": "#87afc7"
+        }
+      },
+      "1516395318722": {
+        "type": "content-section",
+        "blocks": {
+          "1516397582892": {
+            "type": "header",
+            "settings": {
+              "header": "Featured Products",
+              "text_color": "#007bff",
+              "horizontal_alignment": "center"
+            }
+          },
+          "1516396453640": {
+            "type": "product",
+            "settings": {
+              "product": "automated-tasty-steel-towels",
+              "horizontal_alignment": "left"
+            }
+          },
+          "1516396463259": {
+            "type": "product",
+            "settings": {
+              "product": "de-engineered-exclusive-sleek-fresh-chips",
+              "horizontal_alignment": "left"
+            }
+          },
+          "1516396471124": {
+            "type": "product",
+            "settings": {
+              "product": "cross-platform-universal-generic-soft-shoes",
+              "horizontal_alignment": "left"
+            }
+          },
+          "1516396479385": {
+            "type": "product",
+            "settings": {
+              "product": "cloned-fantastic-steel-salad-frozen-green",
+              "horizontal_alignment": "left"
+            }
+          },
+          "1516396488922": {
+            "type": "product",
+            "settings": {
+              "product": "centralized-incredible-metal-shoes-metal-yellow",
+              "horizontal_alignment": "left"
+            }
+          }
+        },
+        "block_order": [
+          "1516397582892",
+          "1516396453640",
+          "1516396463259",
+          "1516396471124",
+          "1516396479385",
+          "1516396488922"
+        ],
+        "settings": {
+          "section_width": "full-width",
+          "content_width": "full-width",
+          "padding_top_bottom": 2,
+          "margin_top": 0,
+          "background_color": "#cccccc"
+        }
+      },
+      "1516395331625": {
+        "type": "content-section",
+        "blocks": {
+          "1516396656778": {
+            "type": "text_quote",
+            "settings": {
+              "text": "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.",
+              "attribution": "~ Werther",
+              "text_color": "#000000",
+              "horizontal_alignment": "center",
+              "vertical_alignment": "center",
+              "cta_link": "",
+              "cta_text": ""
+            }
+          }
+        },
+        "block_order": [
+          "1516396656778"
+        ],
+        "settings": {
+          "section_width": "full-width",
+          "content_width": "full-width",
+          "padding_top_bottom": 2,
+          "margin_top": 0,
+          "background_color": ""
+        }
+      },
+      "1516395344950": {
+        "type": "content-section",
+        "blocks": {
+          "1516402948202": {
+            "type": "header",
+            "settings": {
+              "header": "A Bunch of Images",
+              "text_color": "#ffffff",
+              "horizontal_alignment": "center"
+            }
+          },
+          "1516402293849": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeholder.png",
+              "img_horizontal_alignment": "center",
+              "vertical_alignment": "end",
+              "fullbleed": true
+            }
+          },
+          "1516402602876": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeholder.png",
+              "img_horizontal_alignment": "left",
+              "vertical_alignment": "end",
+              "fullbleed": false
+            }
+          },
+          "1516402643061": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeholder.png",
+              "img_horizontal_alignment": "center",
+              "vertical_alignment": "end",
+              "fullbleed": true
+            }
+          },
+          "1516402610113": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeholder.png",
+              "img_horizontal_alignment": "left",
+              "vertical_alignment": "end",
+              "fullbleed": false
+            }
+          },
+          "1516402627085": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/placeholder.png",
+              "img_horizontal_alignment": "left",
+              "vertical_alignment": "end",
+              "fullbleed": true
+            }
+          }
+        },
+        "block_order": [
+          "1516402948202",
+          "1516402293849",
+          "1516402602876",
+          "1516402643061",
+          "1516402610113",
+          "1516402627085"
+        ],
+        "settings": {
+          "section_width": "full-width",
+          "content_width": "full-width",
+          "padding_top_bottom": 2,
+          "margin_top": 0,
+          "background_color": "#000000"
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [
+      "1516395291787",
+      "1516395318722",
+      "1516395331625",
+      "1516395344950",
+      "1516395177838"
+    ]
   },
   "presets": {
     "Default": {
-      "sections": {
-        "collection-list": {
-          "type": "collection-list",
-          "blocks": {
-            "collection-list-0": {
-              "type": "collection",
-              "settings": {}
-            },
-            "collection-list-1": {
-              "type": "collection",
-              "settings": {}
-            },
-            "collection-list-2": {
-              "type": "collection",
-              "settings": {}
-            }
-          },
-          "block_order": [
-            "collection-list-0",
-            "collection-list-1",
-            "collection-list-2"
-          ],
-          "settings": {}
-        },
-        "featured-collection": {
-          "type": "featured-collection",
-          "settings": {
-            "collection": "frontpage"
-          }
-        },
-        "featured-product": {
-          "type": "featured-product",
-          "settings": {}
-        }
-      },
       "content_for_index": [
-        "collection-list",
-        "featured-collection",
-        "featured-product"
+
       ]
     }
   }

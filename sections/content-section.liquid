@@ -1,0 +1,355 @@
+<section class="section-{{ section.settings.section_width }}">
+  <div class="row content-{{ section.settings.content_width }}">
+    {% for block in section.blocks %}
+      {% if block.type == "header" %}
+        <div class="w-100"></div>
+      {% endif %}
+
+      <div class="col {{ block.type }} block-{{ block.id }} align-self-{{ block.settings.vertical_alignment | default: 'middle' }}">
+
+
+        {% if block.type == "text_column" %}
+            {% include 'block-text' %}
+        {% elsif block.type == "text_quote" %}
+          {% include 'block-quote' %}
+        {% elsif block.type == "article" %}
+          {% assign article = articles[block.settings.article]%}
+          {% include 'block-article' %}
+        {% elsif block.type == "product" %}
+          {% assign product = all_products[block.settings.product]%}
+          {% include 'block-product' %}
+        {% elsif block.type == "header" %}
+          {% include 'block-header' %}
+        {% elsif block.type == "image" %}
+          {% include 'block-image' %}
+        {% endif %}
+
+
+      </div>
+
+      {% comment %} BOOTSTRAP HACK TO CLEAR TO NEXT LINE https://getbootstrap.com/docs/4.0/layout/grid/#column-breaks {% endcomment %}
+      {% if block.type == "header" %}
+        <div class="w-100"></div>
+      {% endif %}
+
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .row {
+    background-color: {{ section.settings.background_color }};
+    margin-top: {{ section.settings.margin_top }}rem;
+    padding-bottom: {{ section.settings.padding_top_bottom }}rem;
+    padding-top: {{ section.settings.padding_top_bottom }}rem;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Content Section",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "section_width",
+        "label": "Section width options",
+        "options": [
+          { "value": "full-width", "label": "Full width" },
+          { "value": "page-width", "label": "Fixed width (1400px)" }
+        ],
+        "default": "full-width"
+      },
+      {
+        "type": "radio",
+        "id": "content_width",
+        "label": "Content width options",
+        "options": [
+          { "value": "full-width", "label": "Full width" },
+          { "value": "page-width", "label": "Fixed width (1400px)" }
+        ],
+        "default": "full-width"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_bottom",
+        "label": "Section top/bottom padding",
+        "min": 0,
+        "max": 10,
+        "unit": "rem",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "label": "Section top margin",
+        "min": 0,
+        "max": 10,
+        "unit": "rem",
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Section background color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "article",
+        "name": "Article",
+        "settings": [
+          {
+            "type": "article",
+            "id": "article",
+            "label": "Blog article"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "horizontal_alignment",
+            "label": "Text alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "select",
+            "id": "vertical_alignment",
+            "label": "Content vertical alignment",
+            "options": [
+              { "value": "start", "label": "Top" },
+              { "value": "center", "label": "Middle" },
+              { "value": "end", "label": "Bottom" }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "Button text"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "name": "Header",
+        "settings": [
+          {
+            "type": "text",
+            "id": "header",
+            "label": "Section header"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "horizontal_alignment",
+            "label": "Text alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "img_horizontal_alignment",
+            "label": "Horizontal alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "vertical_alignment",
+            "label": "Vertical alignment",
+            "options": [
+              { "value": "start", "label": "Top" },
+              { "value": "center", "label": "Middle" },
+              { "value": "end", "label": "Bottom" }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "checkbox",
+            "id": "fullbleed",
+            "label": "Full bleed image",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "select",
+            "id": "horizontal_alignment",
+            "label": "Text alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+          }
+        ]
+      },
+      {
+        "type": "text_quote",
+        "name": "Quote",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "text",
+            "id": "attribution",
+            "label": "Quote attribution"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "horizontal_alignment",
+            "label": "Text alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "select",
+            "id": "vertical_alignment",
+            "label": "Content vertical alignment",
+            "options": [
+              { "value": "start", "label": "Top" },
+              { "value": "center", "label": "Middle" },
+              { "value": "end", "label": "Bottom" }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "url",
+            "id": "cta_link",
+            "label": "CTA link"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "CTA text"
+          }
+        ]
+      },
+      {
+        "type": "text_column",
+        "name": "Text column",
+        "settings": [
+          {
+            "type": "text",
+            "id": "header",
+            "label": "Header"
+          },
+          {
+            "type": "text",
+            "id": "lead",
+            "label": "Lead"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#000000"
+          },
+          {
+            "type": "select",
+            "id": "horizontal_alignment",
+            "label": "Text alignment",
+            "options": [
+              { "value": "left", "label": "Left" },
+              { "value": "center", "label": "Center" },
+              { "value": "right", "label": "Right" }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "select",
+            "id": "vertical_alignment",
+            "label": "Content vertical alignment",
+            "options": [
+              { "value": "start", "label": "Top" },
+              { "value": "center", "label": "Middle" },
+              { "value": "end", "label": "Bottom" }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "url",
+            "id": "cta_link",
+            "label": "CTA link"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "CTA text"
+          },
+          {
+            "type": "image_picker",
+            "id": "column_image",
+            "label": "Image (optional)"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Content Section",
+        "category": "General"
+      }
+    ]
+  }
+{% endschema %}

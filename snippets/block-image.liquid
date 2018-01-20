@@ -1,0 +1,15 @@
+{% if block.settings.image %}
+  <img src="{{ block.settings.image | img_url: 'master' }}">
+{% endif %}
+
+<style>
+  .block-{{ block.id }} img {
+    max-width: 100%;
+    position: relative;
+    {% if block.settings.fullbleed %}
+      left: -15px;
+      max-width: calc(100% + 30px);
+      width: calc(100% + 30px);
+    {% endif %}
+  }
+</style>
